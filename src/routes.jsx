@@ -1,10 +1,10 @@
-import App from './App';
+import MainPage from './pages/MainPage';
 import ErrorPage from './ErrorPage';
 
 const routes = [
   {
     path: '/',
-    element: <App />,
+    element: <MainPage />,
     errorElement: <ErrorPage />,
   },
 ];
