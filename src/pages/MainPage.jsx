@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { MainContainer } from '../layout/MainContainer';
 import '../style/mainPage.css';
-import { mostPopularTwitch } from '../hooks/api/apiData';
+import { getPopularGames } from '../hooks/api/apiData';
 function MainPage() {
-  mostPopularTwitch();
+  getPopularGames();
   return (
     <div className='home-screen h-300vh'>
       <MainContainer />

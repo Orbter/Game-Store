@@ -1,20 +1,25 @@
 import { useEffect, useState } from 'react';
-import { getPlaying } from './mostPopularApi/getPlaying';
-import { getVisits } from './mostPopularApi/getVisits';
-import { getWantToPlay } from './mostPopularApi/getWantToPlay';
-import { calculatePopular } from './calculatePopularity/calculatePopular';
-const apiKey = import.meta.env.VITE_RAWG_API;
-// TWITCH API EXAMPLE
-// POST: https://id.twitch.tv/oauth2/token?client_id=abcdefg12345&client_secret=hijklmn67890&grant_type=client_credentials
 
-function mostPopularTwitch() {
-  const visits = getVisits();
-  const wantToPlay = getWantToPlay();
-  const playing = getPlaying();
+const getPopularGames = () => {
+  const apiKey = import.meta.env.VITE_RAWG_API;
+  console.log(apiKey);
+  const today = new Date().toISOString().split('T')[0];
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split('T')[0];
 
-  const popularList = calculatePopular(visits, wantToPlay, playing);
-  console.log(popularList);
-  return popularList;
-}
-export { mostPopularTwitch };
-// Authorization
+  fetch(
+    `https://api.rawg.io/api/games?key=${apiKey}&dates=${thirtyDaysAgo},${today}&ordering=-popularity&page_size=30`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  )
+    .then((response) => response.json())
+    .then((data) => console.log('Popular Games:', data))
+    .catch((error) => console.error('Error:', error));
+};
+
+export { getPopularGames };
