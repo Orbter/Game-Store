@@ -2,9 +2,7 @@ import mainPhoto from '../../assets/main-image.png';
 
 function MainSlider() {
   return (
-    <div className='w-48 '>
-      <img src={mainPhoto} className='rounded-sm'></img>
-    </div>
+    <img src={mainPhoto} className='rounded-sm w-full h-full object-fill'></img>
   );
 }
 export { MainSlider };

@@ -3,9 +3,20 @@
 .home-screen {
   background: rgb(29, 54, 86);
   background: linear-gradient(
-    0deg,
+    180deg,
     rgba(29, 54, 86, 1) 0%,
     rgba(25, 44, 68, 1) 50%,
     rgba(22, 32, 45, 1) 100%
   );
+}
+
+.semi-headers {
+  font-family: 'Open Sans', serif;
+  font-weight: 600;
+}
+.price {
+  font-family: 'Roboto', serif;
+}
+.tags-color {
+  background-color: #3c6586;
 }

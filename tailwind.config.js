@@ -5,6 +5,14 @@ export default {
     extend: {
       height: {
         '300vh': '300vh',
+        '100vw': '150vw',
+      },
+      minHeight: {
+        '350px': '350px',
+      },
+
+      colors: {
+        'main-blue': '#11273A',
       },
     },
   },

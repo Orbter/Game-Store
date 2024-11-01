@@ -9,7 +9,7 @@ const getPopularGames = () => {
     .split('T')[0];
 
   fetch(
-    `https://api.rawg.io/api/games?key=${apiKey}&dates=${thirtyDaysAgo},${today}&ordering=-popularity&page_size=30`,
+    `https://api.rawg.io/api/games?key=${apiKey}&dates=${thirtyDaysAgo},${today}&ordering=-popularity&page_size=5`,
     {
       method: 'GET',
       headers: {
