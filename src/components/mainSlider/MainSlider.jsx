@@ -1,8 +1,6 @@
-import mainPhoto from '../../assets/main-image.png';
-
-function MainSlider() {
+function MainSlider({ image }) {
   return (
-    <img src={mainPhoto} className='rounded-sm w-full h-full object-fill'></img>
+    <img src={image} className="rounded-sm w-full h-full object-fill"></img>
   );
 }
 export { MainSlider };
