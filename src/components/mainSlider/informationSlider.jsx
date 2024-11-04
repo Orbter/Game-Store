@@ -51,14 +51,14 @@ function InformationSlider() {
   ];
 
   return (
-    <div className='text-white p-2'>
-      <h1 className='semi-headers text-2xl'>god of war ragnarock</h1>
-      <div className='w-full flex justify-center pt-6'>
-        <img className='w-8/12  object-fill' src={mainPhoto}></img>
+    <div className="h-full text-white p-2 flex flex-col justify-evenly">
+      <h1 className="semi-headers text-2xl pb-3">god of war ragnarock</h1>
+      <div className=" hidden md:flex w-full justify-center  pt-602">
+        <img className="w-8/12  object-fill" src={mainPhoto}></img>
       </div>
-      <div className='pt-6 flex justify-between pb-2'>
-        <h2 className='semi-headers text-xl'>available now!</h2>
-        <h3 className='pr-3 price'>$60</h3>
+      <div className="pt-6 flex justify-between pb-2">
+        <h2 className="semi-headers text-xl">available now!</h2>
+        <h3 className="pr-3 price text-lg">$60</h3>
       </div>
       <TagsCreator tagsArray={tagsArray} />
     </div>

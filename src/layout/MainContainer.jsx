@@ -26,16 +26,16 @@ function MainContainer() {
 
   return (
     <div
-      className="bg-main-blue w-9/12 min-h-[550px] h-100vw cursor-pointer flex-col embla"
+      className="bg-main-blue w-9/12  md:w-10/12 h-[fit-content] cursor-pointer embla "
       ref={emblaRef}
     >
       <div className="embla__container">
         {slidesData.map((slide, index) => (
-          <div key={index} className="embla__slide">
-            <div className="w-full">
+          <div key={index} className="embla__slide md:flex">
+            <div className="w-full md:w-[60vw]">
               <MainSlider image={slide.image} />
             </div>
-            <div className="w-full">
+            <div className="w-full md:w-[40vw]">
               <InformationSlider />
             </div>
           </div>
