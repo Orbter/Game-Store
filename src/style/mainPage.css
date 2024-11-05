@@ -30,3 +30,6 @@
   flex: 0 0 100%;
   min-width: 0;
 }
+.header-color {
+  background-color: rgb(25, 29, 35);
+}

@@ -36,9 +36,9 @@ function MainContainer() {
   }, [emblaApi]);
 
   return (
-    <div className='w-full flex justify-center h-[fit-content] items-center '>
+    <div className='w-full flex justify-center h-[fit-content] items-center mt-32'>
       <button
-        className='embla__prev h-[fit-content] md:pr-5'
+        className='embla__prev hidden h-[fit-content] md:flex md:mr-5'
         onClick={scrollPrev}
       >
         <img src={arrow}></img>
@@ -61,7 +61,7 @@ function MainContainer() {
       </div>
 
       <button
-        className='embla__next h-[fit-content] flex  md:pl-5'
+        className='hidden embla__next h-[fit-content] md:flex md:ml-5'
         onClick={scrollNext}
       >
         <img src={arrow} className='rotate-180'></img>
