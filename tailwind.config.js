@@ -14,7 +14,7 @@ export default {
       colors: {
         'main-blue': '#11273A',
         customGray: '#4E617B',
-        buttonBlack: '#131A22',
+        buttonBlack: '#0e1318',
       },
     },
   },
