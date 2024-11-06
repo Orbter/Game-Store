@@ -35,10 +35,13 @@ function Search() {
           ></input>
         </div>
       ) : (
+        // main container
         <div className="flex flex-col fixed z-20 top-0 left-0">
+          {/*right and left border*/}
           <div className="z-30 header-color h-16 w-[98vw] fixed"></div>
-
+          {/*flex displacer*/}
           <div className="flex w-[98vw] items-center relative z-40 h-16 justify-center">
+            {/*input container*/}
             <div className="flex w-[90vw] bg-customGray pl-3 pr-3 items-center">
               <img
                 src={searchIcon}
@@ -58,6 +61,7 @@ function Search() {
               ></img>
             </div>
           </div>
+          {/*overlay*/}
           <div
             className="h-[100vh] bg-[#12121299] bg-opacity-60 cursor-pointer"
             onClick={closeSearch}
