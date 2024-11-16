@@ -13,7 +13,7 @@ function addingClasses(allCategories, cssClasses) {
   };
   allCategories.map((item) => ({
     ...item,
-    randomNumber: randomClasses(cssClassesCurrent),
+    randomClasses: randomClasses(cssClassesCurrent),
   }));
 }
 // randomize the sliders so that every time it will have 4 different card every time tou open the website

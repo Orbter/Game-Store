@@ -16,8 +16,13 @@ import rpgImg from '../assets/categories/rpg.png';
 import shootersImg from '../assets/categories/shooters.png';
 import simulationImg from '../assets/categories/simulation.png';
 import strategyImg from '../assets/categories/strategy.png';
+import {
+  addingClasses,
+  randomSlider,
+} from '../utils/categoriesCaculation/caculationCat';
+import { Category } from '../components/categories/Category';
 
-function Categories() {
+function AllCategory() {
   const allCategories = [
     { id: 1, title: 'action', img: actionImg },
     { id: 2, title: 'adventure', img: adventureImg },
@@ -47,7 +52,8 @@ function Categories() {
     { color: 'pink-background ', counter: 2 },
     { color: 'aqua-background', counter: 2 },
   ];
-
+  const newCategories = addingClasses(allCategories, cssClasses);
+  const categoriesSlide = randomSlider(newCategories);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const scrollPrev = useCallback(() => {
@@ -61,10 +67,19 @@ function Categories() {
   return (
     <div>
       <div className='embla'>
-        <div className='embla-viewport'>
-          <div className='embla__container'></div>
+        <div className='embla-viewport' ref={emblaRef}>
+          <div className='embla__container'>
+            {categoriesSlide.map((bundleCategories, index) => {
+              <div key={index} className='embla__slide'>
+                {bundleCategories.map((singleCategory, index) => {
+                  <Category gamesCategoric={singleCategory} index={index} />;
+                })}
+              </div>;
+            })}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+export { AllCategory };
