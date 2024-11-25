@@ -16,9 +16,11 @@ import rpgImg from '../assets/categories/rpg.png';
 import shootersImg from '../assets/categories/shooters.png';
 import simulationImg from '../assets/categories/simulation.png';
 import strategyImg from '../assets/categories/strategy.png';
+import arrow from '../assets/svg/arrow.svg';
 import {
   addingClasses,
   randomSlider,
+  changeColors,
 } from '../utils/categoriesCaculation/caculationCat';
 import { Category } from '../components/categories/Category.jsx';
 function AllCategory() {
@@ -52,7 +54,8 @@ function AllCategory() {
     { color: 'aqua-background', counter: 2 },
   ];
   const newCategories = addingClasses(allCategories, cssClasses);
-  const categoriesSlide = randomSlider(newCategories);
+  const fixedCategories = changeColors(newCategories);
+  const categoriesSlide = randomSlider(fixedCategories);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const scrollPrev = useCallback(() => {
@@ -64,7 +67,13 @@ function AllCategory() {
   }, [emblaApi]);
 
   return (
-    <div className='w-[98vw] '>
+    <div className='w-[98vw] flex items-center '>
+      <button
+        className='embla__prev hidden h-[fit-content] md:flex md:ml-3'
+        onClick={scrollPrev}
+      >
+        <img src={arrow}></img>
+      </button>
       <div className='embla mt-4'>
         <div className='embla-viewport' ref={emblaRef}>
           <div className='embla__container'>
@@ -85,6 +94,12 @@ function AllCategory() {
           </div>
         </div>
       </div>
+      <button
+        className='hidden embla__next h-[fit-content] md:flex md:mr-3'
+        onClick={scrollNext}
+      >
+        <img src={arrow} className='rotate-180'></img>
+      </button>
     </div>
   );
 }

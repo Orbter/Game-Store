@@ -1,28 +1,12 @@
 function addingClasses(allCategories, cssClasses) {
-  const checkingCounters = (thisCssClass) => {
-    const copyCss = cssClasses;
-    let doesHave2 = false;
-    let classValid = true;
-    for (let index = 0; index < 8; index++) {
-      const element = copyCss[index];
-      if (element.counter === 2) doesHave2 = true;
-    }
-    if (doesHave2) {
-      if (thisCssClass.counter !== 2) classValid = false;
-    }
-
-    return classValid;
-  };
-
   const cssClassesCurrent = cssClasses;
   const randomClasses = (array) => {
     let chooseClass = false;
     let color;
     while (!chooseClass) {
       const randomNumber = Math.floor(Math.random() * array.length);
-      const doesHave2 = checkingCounters(array[randomNumber]);
 
-      if (array[randomNumber].counter !== 0 && doesHave2) {
+      if (array[randomNumber].counter !== 0) {
         array[randomNumber].counter -= 1;
         chooseClass = true;
         color = array[randomNumber].color;
@@ -35,6 +19,34 @@ function addingClasses(allCategories, cssClasses) {
     randomClasses: randomClasses(cssClassesCurrent),
   }));
   return updatedCategories;
+}
+
+function changeColors(list) {
+  const copyList = [...list];
+  let lastColor = null;
+  let colorNow = null;
+  let trueRandom = false;
+  let colorProblem;
+  let colorSwitch;
+  for (let index = 0; index < copyList.length; index++) {
+    const element = copyList[index];
+    colorNow = element.randomClasses;
+    if (colorNow === lastColor) {
+      let randomNumber;
+      while (!trueRandom) {
+        randomNumber = Math.floor(Math.random() * copyList.length);
+        if (randomNumber !== element.id || randomNumber !== element.id - 1) {
+          trueRandom = true;
+        }
+      }
+      colorProblem = colorNow;
+      colorSwitch = copyList[randomNumber].randomClasses;
+      copyList[randomNumber].randomClasses = colorProblem;
+      copyList[element.id].randomClasses = colorSwitch;
+    }
+    lastColor = colorNow;
+  }
+  return copyList;
 }
 
 // randomize the sliders so that every time it will have 4 different card every time tou open the website
@@ -63,6 +75,6 @@ function randomSlider(allCategories) {
   return newAllCategories;
 }
 
-export { addingClasses, randomSlider };
+export { addingClasses, randomSlider, changeColors };
 
 //
