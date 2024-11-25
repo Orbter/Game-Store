@@ -3,7 +3,7 @@ import { MainContainer } from '../layout/MainContainer';
 import '../style/mainPage.css';
 import { getPopularGames } from '../hooks/api/apiData';
 import { Header } from '../layout/header';
-import { AllCategory } from '../layout/Categories';
+import { AllCategory } from '../layout/CategoriesPage.jsx';
 function MainPage() {
   getPopularGames();
   return (

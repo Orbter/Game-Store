@@ -7,9 +7,7 @@ import arrow from '../assets/svg/arrow.svg';
 
 function MainContainer() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
-  function cheking() {
-    console.log('work');
-  }
+  function cheking() {}
   const slidesData = [
     {
       title: 'God of War Ragnarok',
@@ -36,22 +34,22 @@ function MainContainer() {
   }, [emblaApi]);
 
   return (
-    <div className="w-full flex justify-center h-[fit-content] items-center mt-36">
+    <div className='w-full flex justify-center h-[fit-content] items-center mt-36'>
       <button
-        className="embla__prev hidden h-[fit-content] md:flex md:mr-5"
+        className='embla__prev hidden h-[fit-content] md:flex md:mr-5'
         onClick={scrollPrev}
       >
         <img src={arrow}></img>
       </button>
-      <div className="bg-main-blue w-9/12  md:w-10/12 h-[fit-content] cursor-pointer embla ">
-        <div className="embla-viewport" onClick={cheking} ref={emblaRef}>
-          <div className="embla__container">
+      <div className='bg-main-blue w-9/12  md:w-10/12 h-[fit-content] cursor-pointer embla '>
+        <div className='embla-viewport' onClick={cheking} ref={emblaRef}>
+          <div className='embla__container'>
             {slidesData.map((slide, index) => (
-              <div key={index} className="embla__slide md:flex">
-                <div className="w-full md:w-[60vw]">
+              <div key={index} className='embla__slide md:flex'>
+                <div className='w-full md:w-[60vw]'>
                   <MainSlider image={slide.image} />
                 </div>
-                <div className="w-full md:w-[40vw]">
+                <div className='w-full md:w-[40vw]'>
                   <InformationSlider />
                 </div>
               </div>
@@ -61,10 +59,10 @@ function MainContainer() {
       </div>
 
       <button
-        className="hidden embla__next h-[fit-content] md:flex md:ml-5"
+        className='hidden embla__next h-[fit-content] md:flex md:ml-5'
         onClick={scrollNext}
       >
-        <img src={arrow} className="rotate-180"></img>
+        <img src={arrow} className='rotate-180'></img>
       </button>
     </div>
   );

@@ -20,8 +20,7 @@ import {
   addingClasses,
   randomSlider,
 } from '../utils/categoriesCaculation/caculationCat';
-import { Category } from '../components/categories/Category';
-
+import { Category } from '../components/categories/Category.jsx';
 function AllCategory() {
   const allCategories = [
     { id: 1, title: 'action', img: actionImg },
@@ -65,17 +64,24 @@ function AllCategory() {
   }, [emblaApi]);
 
   return (
-    <div>
-      <div className='embla'>
+    <div className='w-[98vw] '>
+      <div className='embla mt-4'>
         <div className='embla-viewport' ref={emblaRef}>
           <div className='embla__container'>
-            {categoriesSlide.map((bundleCategories, index) => {
-              <div key={index} className='embla__slide'>
-                {bundleCategories.map((singleCategory, index) => {
-                  <Category gamesCategoric={singleCategory} index={index} />;
-                })}
-              </div>;
-            })}
+            {categoriesSlide.map((bundleCategories, index) => (
+              <div
+                key={index}
+                className='embla__slide flex w-[50vw] justify-center gap-5'
+              >
+                {bundleCategories.map((singleCategory, indexSlide) => (
+                  <Category
+                    key={indexSlide}
+                    gamesCategoric={singleCategory}
+                    index={index}
+                  />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>

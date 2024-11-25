@@ -1,15 +1,21 @@
 import PropTypes from 'prop-types';
-
+import '../../style/categories.css';
 function Category({ gamesCategoric, index }) {
   const colorDiv = gamesCategoric.randomClasses;
   const name = gamesCategoric.title;
   const imgSrc = gamesCategoric.img;
   return (
-    <div key={index} className='w-[20vw] h-[20vw]'>
-      <div className={'w-full h-full ' + colorDiv}>
-        <img src={imgSrc} className='flex items-end justify-center'>
-          {name}
-        </img>
+    <div key={index} className='w-[20vw] h-[20vw] cursor-pointer'>
+      <div className={'w-full h-full relative'}>
+        <div
+          className={
+            'z-30 absolute flex justify-center items-end w-[20vw] h-[20vw] pb-4 ' +
+            colorDiv
+          }
+        >
+          <div className='text-white inter text-lg text'>{name}</div>
+        </div>
+        <img src={imgSrc} className='w-full h-full object-cover' />
       </div>
     </div>
   );

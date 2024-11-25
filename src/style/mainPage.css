@@ -32,7 +32,9 @@
 .header-color {
   background-color: rgb(25, 29, 35);
 }
-
+.inter {
+  font-family: 'Inter', serif;
+}
 .bebas-neue-regular {
   font-family: 'Bebas Neue', sans-serif;
   font-weight: 400;

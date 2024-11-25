@@ -1,11 +1,28 @@
 function addingClasses(allCategories, cssClasses) {
+  const checkingCounters = (thisCssClass) => {
+    const copyCss = cssClasses;
+    let doesHave2 = false;
+    let classValid = true;
+    for (let index = 0; index < 8; index++) {
+      const element = copyCss[index];
+      if (element.counter === 2) doesHave2 = true;
+    }
+    if (doesHave2) {
+      if (thisCssClass.counter !== 2) classValid = false;
+    }
+
+    return classValid;
+  };
+
   const cssClassesCurrent = cssClasses;
   const randomClasses = (array) => {
     let chooseClass = false;
     let color;
     while (!chooseClass) {
       const randomNumber = Math.floor(Math.random() * array.length);
-      if (array[randomNumber].counter !== 0) {
+      const doesHave2 = checkingCounters(array[randomNumber]);
+
+      if (array[randomNumber].counter !== 0 && doesHave2) {
         array[randomNumber].counter -= 1;
         chooseClass = true;
         color = array[randomNumber].color;
@@ -19,6 +36,7 @@ function addingClasses(allCategories, cssClasses) {
   }));
   return updatedCategories;
 }
+
 // randomize the sliders so that every time it will have 4 different card every time tou open the website
 
 function randomSlider(allCategories) {
@@ -39,9 +57,8 @@ function randomSlider(allCategories) {
       list.add(removeItem);
     }
     newAllCategories.push([...list]);
-    console.log(newAllCategories);
     list = new Set();
-    newAllCategories.length === 3 && (listOver = true);
+    newAllCategories.length === 4 && (listOver = true);
   }
   return newAllCategories;
 }
