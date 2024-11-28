@@ -5,17 +5,17 @@ function Category({ gamesCategoric, index }) {
   const name = gamesCategoric.title;
   const imgSrc = gamesCategoric.img;
   return (
-    <div key={index} className='w-[20vw] h-[20vw] cursor-pointer'>
+    <div key={index} className='w-[19vw] h-[19vw]  cursor-pointer'>
       <div className={'w-full h-full relative'}>
         <div
           className={
-            'z-30 absolute flex justify-center items-end w-[20vw] h-[20vw] pb-4 ' +
+            'z-30 absolute flex justify-center items-end medium-size w-[19vw] h-[19vw] pb-4 ' +
             colorDiv
           }
         >
           <div className='text-white inter text-lg text'>{name}</div>
         </div>
-        <img src={imgSrc} className='w-full h-full object-cover' />
+        <img src={imgSrc} className='w-full h-full object-cover ' />
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ function MainContainer() {
         className='embla__prev hidden h-[fit-content] md:flex md:mr-5'
         onClick={scrollPrev}
       >
-        <img src={arrow}></img>
+        <img className='w-[31px] h-[43px]' src={arrow}></img>
       </button>
       <div className='bg-main-blue w-9/12  md:w-10/12 h-[fit-content] cursor-pointer embla '>
         <div className='embla-viewport' onClick={cheking} ref={emblaRef}>
@@ -62,7 +62,7 @@ function MainContainer() {
         className='hidden embla__next h-[fit-content] md:flex md:ml-5'
         onClick={scrollNext}
       >
-        <img src={arrow} className='rotate-180'></img>
+        <img src={arrow} className='rotate-180 w-[31px] h-[43px]'></img>
       </button>
     </div>
   );

@@ -1,5 +1,5 @@
 import useEmblaCarousel from 'embla-carousel-react';
-import { useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import actionImg from '../assets/categories/action.png';
 import adventureImg from '../assets/categories/adventure.png';
 import arcadeImg from '../assets/categories/arcade.png';
@@ -25,22 +25,22 @@ import {
 import { Category } from '../components/categories/Category.jsx';
 function AllCategory() {
   const allCategories = [
-    { id: 1, title: 'action', img: actionImg },
-    { id: 2, title: 'adventure', img: adventureImg },
-    { id: 3, title: 'arcade', img: arcadeImg },
-    { id: 4, title: 'card', img: cardImg },
-    { id: 5, title: 'casual', img: casualImg },
-    { id: 6, title: 'family', img: familyImg },
-    { id: 7, title: 'fighting', img: fightingImg },
-    { id: 8, title: 'indie', img: indieImg },
-    { id: 9, title: 'mmoImg', img: mmoImg },
-    { id: 10, title: 'platformer', img: platformerImg },
-    { id: 11, title: 'racing', img: racingImg },
-    { id: 12, title: 'rpg', img: rpgImg },
-    { id: 13, title: 'shooter', img: shootersImg },
-    { id: 14, title: 'simulation', img: simulationImg },
-    { id: 15, title: 'strategy', img: strategyImg },
-    { id: 16, title: 'puzzle', img: puzzleImg },
+    { id: 0, title: 'action', img: actionImg },
+    { id: 1, title: 'adventure', img: adventureImg },
+    { id: 2, title: 'arcade', img: arcadeImg },
+    { id: 3, title: 'card', img: cardImg },
+    { id: 4, title: 'casual', img: casualImg },
+    { id: 5, title: 'family', img: familyImg },
+    { id: 6, title: 'fighting', img: fightingImg },
+    { id: 7, title: 'indie', img: indieImg },
+    { id: 8, title: 'mmoImg', img: mmoImg },
+    { id: 9, title: 'platformer', img: platformerImg },
+    { id: 10, title: 'racing', img: racingImg },
+    { id: 11, title: 'rpg', img: rpgImg },
+    { id: 12, title: 'shooter', img: shootersImg },
+    { id: 13, title: 'simulation', img: simulationImg },
+    { id: 14, title: 'strategy', img: strategyImg },
+    { id: 15, title: 'puzzle', img: puzzleImg },
   ];
 
   const cssClasses = [
@@ -53,9 +53,13 @@ function AllCategory() {
     { color: 'pink-background ', counter: 2 },
     { color: 'aqua-background', counter: 2 },
   ];
-  const newCategories = addingClasses(allCategories, cssClasses);
-  const fixedCategories = changeColors(newCategories);
-  const categoriesSlide = randomSlider(fixedCategories);
+  const categoriesSlide = useMemo(() => {
+    const newCategories = addingClasses(allCategories, cssClasses);
+    const fixedCategories = changeColors(newCategories);
+    console.log(fixedCategories);
+    return randomSlider(fixedCategories);
+  }, []);
+  console.log(categoriesSlide);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
   const scrollPrev = useCallback(() => {
@@ -67,12 +71,12 @@ function AllCategory() {
   }, [emblaApi]);
 
   return (
-    <div className='w-[98vw] flex items-center '>
+    <div className='w-[93vw] flex items-center '>
       <button
-        className='embla__prev hidden h-[fit-content] md:flex md:ml-3'
+        className='embla__prev hidden h-[fit-content] md:flex  '
         onClick={scrollPrev}
       >
-        <img src={arrow}></img>
+        <img className='w-24' src={arrow}></img>
       </button>
       <div className='embla mt-4'>
         <div className='embla-viewport' ref={emblaRef}>
@@ -80,7 +84,7 @@ function AllCategory() {
             {categoriesSlide.map((bundleCategories, index) => (
               <div
                 key={index}
-                className='embla__slide flex w-[50vw] justify-center gap-5'
+                className='embla__slide flex w-[60vw] justify-center gap-4'
               >
                 {bundleCategories.map((singleCategory, indexSlide) => (
                   <Category
@@ -95,10 +99,10 @@ function AllCategory() {
         </div>
       </div>
       <button
-        className='hidden embla__next h-[fit-content] md:flex md:mr-3'
+        className='hidden embla__next h-[fit-content] md:flex '
         onClick={scrollNext}
       >
-        <img src={arrow} className='rotate-180'></img>
+        <img src={arrow} className='rotate-180 w-24'></img>
       </button>
     </div>
   );

@@ -1,22 +1,38 @@
 function addingClasses(allCategories, cssClasses) {
-  const cssClassesCurrent = cssClasses;
   const randomClasses = (array) => {
     let chooseClass = false;
     let color;
+    let lastColor = null; // Move lastColor inside the function
+
     while (!chooseClass) {
       const randomNumber = Math.floor(Math.random() * array.length);
+      if (array[randomNumber].counter > 0) {
+        if (array[randomNumber].color !== lastColor) {
+          array[randomNumber].counter -= 1;
+          chooseClass = true;
+          color = array[randomNumber].color;
+          lastColor = color; // Update lastColor within the function
+        }
+      }
 
-      if (array[randomNumber].counter !== 0) {
+      // Additional check to prevent infinite loop
+      const availableColors = array.filter(
+        (item) => item.counter > 0 && item.color !== lastColor,
+      );
+      if (availableColors.length === 0) {
+        // No other colors available; assign the same color
         array[randomNumber].counter -= 1;
         chooseClass = true;
         color = array[randomNumber].color;
+        lastColor = color;
       }
     }
     return color;
   };
+
   const updatedCategories = allCategories.map((item) => ({
     ...item,
-    randomClasses: randomClasses(cssClassesCurrent),
+    randomClasses: randomClasses(cssClasses),
   }));
   return updatedCategories;
 }
@@ -25,24 +41,28 @@ function changeColors(list) {
   const copyList = [...list];
   let lastColor = null;
   let colorNow = null;
-  let trueRandom = false;
-  let colorProblem;
-  let colorSwitch;
+
   for (let index = 0; index < copyList.length; index++) {
     const element = copyList[index];
     colorNow = element.randomClasses;
+
     if (colorNow === lastColor) {
+      let trueRandom = false;
       let randomNumber;
+
       while (!trueRandom) {
         randomNumber = Math.floor(Math.random() * copyList.length);
-        if (randomNumber !== element.id || randomNumber !== element.id - 1) {
+        const numberMinusOne = element.id - 1;
+
+        if (randomNumber !== element.id && randomNumber !== numberMinusOne) {
           trueRandom = true;
         }
       }
-      colorProblem = colorNow;
-      colorSwitch = copyList[randomNumber].randomClasses;
+
+      const colorProblem = colorNow;
+      const colorSwitch = copyList[randomNumber].randomClasses;
       copyList[randomNumber].randomClasses = colorProblem;
-      copyList[element.id].randomClasses = colorSwitch;
+      copyList[index].randomClasses = colorSwitch;
     }
     lastColor = colorNow;
   }

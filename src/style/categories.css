@@ -79,3 +79,10 @@
     rgba(183, 183, 183, 0) 100%
   );
 }
+@media (min-width: 836px) and (max-width: 837px) {
+  .medium-size {
+    /* Add styles here */
+    width: 157px;
+    object-fit: cover;
+  }
+}
