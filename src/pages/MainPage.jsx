@@ -5,6 +5,7 @@ import { getPopularGames } from '../hooks/api/apiData';
 import { Header } from '../layout/header';
 import { AllCategory } from '../layout/CategoriesPage.jsx';
 import { PopularGamesPage } from '../layout/PopularGamesPage.jsx';
+import { BigGamesPage } from '../layout/bigGamesPage.jsx';
 function MainPage() {
   getPopularGames();
   return (
@@ -13,6 +14,7 @@ function MainPage() {
       <MainContainer />
       <AllCategory />
       <PopularGamesPage />
+      <BigGamesPage />
     </div>
   );
 }
