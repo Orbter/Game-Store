@@ -6,6 +6,7 @@ import { Header } from '../layout/header';
 import { AllCategory } from '../layout/CategoriesPage.jsx';
 import { PopularGamesPage } from '../layout/PopularGamesPage.jsx';
 import { BigGamesPage } from '../layout/bigGamesPage.jsx';
+import { PopularChoosing } from '../layout/PopularChoosing.jsx';
 function MainPage() {
   getPopularGames();
   return (
@@ -15,6 +16,7 @@ function MainPage() {
       <AllCategory />
       <PopularGamesPage />
       <BigGamesPage />
+      <PopularChoosing />
     </div>
   );
 }
