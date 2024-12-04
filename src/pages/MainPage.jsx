@@ -10,7 +10,7 @@ import { PopularChoosing } from '../layout/PopularChoosing.jsx';
 function MainPage() {
   getPopularGames();
   return (
-    <div className='home-screen h-300vh flex items-center flex-col relative'>
+    <div className='home-screen h-300vh flex items-center flex-col relative '>
       <Header />
       <MainContainer />
       <AllCategory />

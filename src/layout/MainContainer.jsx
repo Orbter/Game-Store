@@ -34,7 +34,7 @@ function MainContainer() {
   }, [emblaApi]);
 
   return (
-    <div className='w-full flex justify-center h-[fit-content] items-center mt-36'>
+    <div className='w-full flex justify-center h-[fit-content] items-center mt-36 mb-24 max-w-[1100px]'>
       <button
         className='embla__prev hidden h-[fit-content] md:flex md:mr-5'
         onClick={scrollPrev}
@@ -43,9 +43,9 @@ function MainContainer() {
       </button>
       <div className='bg-main-blue w-9/12  md:w-10/12 h-[fit-content] cursor-pointer embla '>
         <div className='embla-viewport' onClick={cheking} ref={emblaRef}>
-          <div className='embla__container'>
+          <div className='embla__container gap-8'>
             {slidesData.map((slide, index) => (
-              <div key={index} className='embla__slide md:flex'>
+              <div key={index} className='embla__slide md:flex '>
                 <div className='w-full md:w-[60vw]'>
                   <MainSlider image={slide.image} />
                 </div>

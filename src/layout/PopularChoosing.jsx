@@ -7,7 +7,7 @@ function PopularChoosing() {
     { name: 'god of war', url: mainPhoto, price: '$100' },
   ];
   return (
-    <div className='flex w-[93vw]'>
+    <div className='flex w-[93vw] justify-center'>
       <PopularCategories
         category='Popular Upcoming'
         threeGames={games}

@@ -1,8 +1,8 @@
 function BigGames({ imgSrc, gameName, gameText }) {
   return (
-    <div className='flex flex-col justify-between w-[28vw] items-end'>
-      <div className='w-full h-[80%] cursor-pointer flex flex-col justify-around'>
-        <div className='w-full h-[70%]'>
+    <div className='flex flex-col justify-between w-[28vw] items-end max-w-[330px] max-h-[370px] '>
+      <div className='w-full h-[80%] cursor-pointer flex flex-col justify-around transform hover:scale-110 transition duration-300'>
+        <div className='w-full h-[70%] transform '>
           <img
             src={imgSrc}
             className='w-full h-full object-cover rounded-md'

@@ -17,6 +17,8 @@ import shootersImg from '../assets/categories/shooters.png';
 import simulationImg from '../assets/categories/simulation.png';
 import strategyImg from '../assets/categories/strategy.png';
 import arrow from '../assets/svg/arrow.svg';
+import category from '../assets/svg/category.svg';
+
 import {
   addingClasses,
   randomSlider,
@@ -71,39 +73,48 @@ function AllCategory() {
   }, [emblaApi]);
 
   return (
-    <div className='w-[93vw] flex items-center '>
-      <button
-        className='embla__prev hidden h-[fit-content] md:flex  '
-        onClick={scrollPrev}
-      >
-        <img className='w-24' src={arrow}></img>
-      </button>
-      <div className='embla mt-4'>
-        <div className='embla-viewport' ref={emblaRef}>
-          <div className='embla__container'>
-            {categoriesSlide.map((bundleCategories, index) => (
-              <div
-                key={index}
-                className='embla__slide flex w-[60vw] justify-center gap-4'
-              >
-                {bundleCategories.map((singleCategory, indexSlide) => (
-                  <Category
-                    key={indexSlide}
-                    gamesCategoric={singleCategory}
-                    index={index}
-                  />
-                ))}
-              </div>
-            ))}
+    <div className='mb-24 max-w-[1100px]'>
+      <div className='flex items-center cursor-pointer w-fit ml-[5vw] xl:ml-16 firstDiv'>
+        <div className='relative w-20 h-20 flex items-center justify-center rounded-full blurRound'>
+          <img src={category} className='w-14 h-14' alt='Category Icon ' />
+        </div>
+        <h1 className='text-white poppins m-0 text-3xl'>Categories</h1>
+      </div>
+
+      <div className='w-[93vw] flex items-center max-w-[1100px]'>
+        <button
+          className='embla__prev hidden h-[fit-content] md:flex  '
+          onClick={scrollPrev}
+        >
+          <img className='w-24' src={arrow}></img>
+        </button>
+        <div className='embla mt-4'>
+          <div className='embla-viewport' ref={emblaRef}>
+            <div className='embla__container'>
+              {categoriesSlide.map((bundleCategories, index) => (
+                <div
+                  key={index}
+                  className='embla__slide flex w-[60vw] justify-center gap-4'
+                >
+                  {bundleCategories.map((singleCategory, indexSlide) => (
+                    <Category
+                      key={indexSlide}
+                      gamesCategoric={singleCategory}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
+        <button
+          className='hidden embla__next h-[fit-content] md:flex '
+          onClick={scrollNext}
+        >
+          <img src={arrow} className='rotate-180 w-24'></img>
+        </button>
       </div>
-      <button
-        className='hidden embla__next h-[fit-content] md:flex '
-        onClick={scrollNext}
-      >
-        <img src={arrow} className='rotate-180 w-24'></img>
-      </button>
     </div>
   );
 }

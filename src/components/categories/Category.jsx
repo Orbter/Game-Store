@@ -5,11 +5,14 @@ function Category({ gamesCategoric, index }) {
   const name = gamesCategoric.title;
   const imgSrc = gamesCategoric.img;
   return (
-    <div key={index} className='w-[19vw] h-[19vw]  cursor-pointer '>
+    <div
+      key={index}
+      className='w-[19vw] h-[19vw] max-w-[225px] max-h-[225px] cursor-pointer '
+    >
       <div className={'w-full h-full relative'}>
         <div
           className={
-            'z-30 absolute flex justify-center items-end medium-size w-[19vw] h-[19vw] pb-4  hover:translate-y-2  hover:opacity-50 transition duration-800  ' +
+            'z-30 absolute flex justify-center items-end medium-size w-[19vw] h-[19vw] max-w-[225px] max-h-[225px] pb-4  hover:translate-y-2  hover:opacity-50 transition duration-800  ' +
             colorDiv
           }
         >
