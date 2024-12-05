@@ -12,11 +12,11 @@ function Category({ gamesCategoric, index }) {
       <div className={'w-full h-full relative'}>
         <div
           className={
-            'z-30 absolute flex justify-center items-end medium-size w-[19vw] h-[19vw] max-w-[225px] max-h-[225px] pb-4  hover:translate-y-2  hover:opacity-50 transition duration-800  ' +
+            'z-30 absolute flex justify-center items-end medium-size w-[19vw] h-[19vw] max-w-[225px] max-h-[225px] pb-2 sm:pb-4  hover:translate-y-2  hover:opacity-50 transition duration-800  ' +
             colorDiv
           }
         >
-          <div className='text-white inter text-lg text'>{name}</div>
+          <div className='text-white inter text-xs sm:text-lg text'>{name}</div>
         </div>
         <img src={imgSrc} className='w-full h-full object-cover ' />
       </div>

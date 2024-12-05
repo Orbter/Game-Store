@@ -24,7 +24,7 @@ function BigGamesPage() {
   ];
 
   return (
-    <div className='flex justify-between w-[93vw] mb-24 max-w-[1100px]'>
+    <div className='flex flex-col items-center gap-16 sm:gap-0 sm:flex-row sm:justify-between w-[93vw] mb-24 max-w-[1100px]'>
       {games.map((game, index) => (
         <BigGames
           imgSrc={game.img}

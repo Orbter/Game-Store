@@ -32,11 +32,17 @@ function PopularGamesPage() {
   ];
   return (
     <div className='mb-24 '>
-      <div className='flex items-center cursor-pointer w-fit ml-[5vw] xl:ml-16 firstDiv'>
-        <div className='relative w-20 h-20 flex items-center justify-center rounded-full blurRound'>
-          <img src={fire} className='w-14 h-14' alt='Category Icon ' />
+      <div className='flex items-center cursor-pointer w-fit  sm:ml-[5vw] xl:ml-16 firstDiv'>
+        <div className='relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full blurRound'>
+          <img
+            src={fire}
+            className='w-10 sm:w-12 sm:h-12'
+            alt='Category Icon '
+          />
         </div>
-        <h1 className='text-white poppins m-0 text-3xl'>Popular Games</h1>
+        <h1 className='text-white poppins m-0 text-xl sm:text-3xl'>
+          Popular Games
+        </h1>
       </div>
       <div className='w-[93vw] flex items-center max-w-[1100px]'>
         <button
