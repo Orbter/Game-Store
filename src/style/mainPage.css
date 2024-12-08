@@ -70,3 +70,9 @@
 .focused-hover:hover {
   transform: scale(1.1);
 }
+.indicator-on {
+  background-color: #89abca;
+}
+.indicator-off {
+  background-color: #656d78;
+}

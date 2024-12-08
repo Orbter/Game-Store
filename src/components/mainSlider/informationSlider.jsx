@@ -1,6 +1,6 @@
 import mainPhoto from '../../assets/main-image.png';
 import { TagsCreator } from '../tagsCreator';
-function InformationSlider() {
+function InformationSlider({ price }) {
   const tagsArray = [
     {
       id: 31,
@@ -58,7 +58,7 @@ function InformationSlider() {
       </div>
       <div className='pt-6 flex justify-between pb-2'>
         <h2 className='semi-headers text-xl'>available now!</h2>
-        <h3 className='pr-3 price text-lg'>$60</h3>
+        <h3 className='pr-3 price text-lg'>{price}</h3>
       </div>
       <TagsCreator tagsArray={tagsArray} />
     </div>

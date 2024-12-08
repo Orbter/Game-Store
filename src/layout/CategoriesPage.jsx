@@ -26,6 +26,9 @@ import {
 } from '../utils/categoriesCaculation/caculationCat';
 import { Category } from '../components/categories/Category.jsx';
 function AllCategory() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const allCategories = [
     { id: 0, title: 'action', img: actionImg },
     { id: 1, title: 'adventure', img: adventureImg },
@@ -62,8 +65,17 @@ function AllCategory() {
     return randomSlider(fixedCategories);
   }, []);
   console.log(categoriesSlide);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
 
+  // needs to adds onselect?
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    onSelect();
+  }, [emblaApi]);
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -73,53 +85,66 @@ function AllCategory() {
   }, [emblaApi]);
 
   return (
-    <div className='mb-24 max-w-[1100px]'>
-      <div className='flex items-center cursor-pointer w-fit  sm:ml-[5vw] xl:ml-16 firstDiv'>
-        <div className='relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full blurRound'>
-          <img
-            src={category}
-            className='w-10 sm:w-12 sm:h-12'
-            alt='Category Icon '
-          />
+    <div className='flex flex-col items-center mb-12'>
+      <div className='mb-10 max-w-[1100px]'>
+        <div className='flex items-center cursor-pointer w-fit  sm:ml-[5vw] xl:ml-16 firstDiv'>
+          <div className='relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full blurRound'>
+            <img
+              src={category}
+              className='w-10 sm:w-12 sm:h-12'
+              alt='Category Icon '
+            />
+          </div>
+          <h1 className='text-white poppins m-0 text-xl sm:text-3xl'>
+            Categories
+          </h1>
         </div>
-        <h1 className='text-white poppins m-0 text-xl sm:text-3xl'>
-          Categories
-        </h1>
-      </div>
 
-      <div className='w-[93vw] flex items-center max-w-[1100px]'>
-        <button
-          className='embla__prev hidden h-[fit-content] md:flex  '
-          onClick={scrollPrev}
-        >
-          <img className='w-24' src={arrow}></img>
-        </button>
-        <div className='embla mt-4'>
-          <div className='embla-viewport' ref={emblaRef}>
-            <div className='embla__container'>
-              {categoriesSlide.map((bundleCategories, index) => (
-                <div
-                  key={index}
-                  className='embla__slide flex w-[60vw] justify-center gap-4'
-                >
-                  {bundleCategories.map((singleCategory, indexSlide) => (
-                    <Category
-                      key={indexSlide}
-                      gamesCategoric={singleCategory}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              ))}
+        <div className='w-[93vw] flex items-center max-w-[1100px]'>
+          <button
+            className='embla__prev hidden w-[90px] flex-shrink-0 md:flex   '
+            onClick={scrollPrev}
+          >
+            <img className='w-[31px]' src={arrow}></img>
+          </button>
+          <div className='embla mt-4'>
+            <div className='embla-viewport' ref={emblaRef}>
+              <div className='embla__container'>
+                {categoriesSlide.map((bundleCategories, index) => (
+                  <div
+                    key={index}
+                    className='embla__slide flex w-[60vw] justify-center gap-4'
+                  >
+                    {bundleCategories.map((singleCategory, indexSlide) => (
+                      <Category
+                        key={indexSlide}
+                        gamesCategoric={singleCategory}
+                        index={index}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+          <button
+            className='hidden embla__next w-[85px] justify-end flex-shrink-0 md:flex '
+            onClick={scrollNext}
+          >
+            <img src={arrow} className='rotate-180 w-[31px]'></img>
+          </button>
         </div>
-        <button
-          className='hidden embla__next h-[fit-content] md:flex '
-          onClick={scrollNext}
-        >
-          <img src={arrow} className='rotate-180 w-24'></img>
-        </button>
+      </div>
+      <div className='flex gap-5'>
+        {categoriesSlide.map((_, index) => (
+          <button
+            key={index}
+            className={`w-[3.5vw]  h-[2vw] lg:w-8 lg:h-5 rounded-sm ${
+              selectedIndex === index ? 'indicator-on' : 'indicator-off'
+            }`}
+            onClick={() => emblaApi && emblaApi.scrollTo(index)}
+          ></button>
+        ))}
       </div>
     </div>
   );
