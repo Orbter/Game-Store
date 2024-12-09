@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const getPopularGames = () => {
+const getPopularGamesMain = () => {
   const apiKey = import.meta.env.VITE_RAWG_API;
   console.log(apiKey);
   const today = new Date().toISOString().split('T')[0];
@@ -21,5 +21,6 @@ const getPopularGames = () => {
     .then((data) => console.log('Popular Games:', data))
     .catch((error) => console.error('Error:', error));
 };
+function PriceGames() {}
 
-export { getPopularGames };
+export { getPopularGamesMain };

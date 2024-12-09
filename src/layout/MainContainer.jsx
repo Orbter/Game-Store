@@ -5,7 +5,7 @@ import mainPhoto from '../assets/main-image.png';
 import { useCallback, useEffect, useState } from 'react';
 import arrow from '../assets/svg/arrow.svg';
 
-function MainContainer() {
+function MainContainer({ mainGames }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -13,17 +13,17 @@ function MainContainer() {
     {
       title: 'God of War Ragnarok',
       price: '$60',
-      image: mainPhoto,
+      imageUrl: mainPhoto,
     },
     {
       title: 'Horizon Zero Dawn',
       price: '$40',
-      image: mainPhoto,
+      imageUrl: mainPhoto,
     },
     {
       title: 'The Last of Us Part II',
       price: '$50',
-      image: mainPhoto,
+      imageUrl: mainPhoto,
     },
   ];
   const onSelect = useCallback(() => {
@@ -60,7 +60,7 @@ function MainContainer() {
               {slidesData.map((slide, index) => (
                 <div key={index} className='embla__slide md:flex '>
                   <div className='w-full md:w-[60%]'>
-                    <MainSlider image={slide.image} />
+                    <MainSlider image={slide.imageUrl} />
                   </div>
                   <div className='w-full md:w-[40%]'>
                     <InformationSlider price={slide.price} />

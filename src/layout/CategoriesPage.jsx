@@ -61,10 +61,9 @@ function AllCategory() {
   const categoriesSlide = useMemo(() => {
     const newCategories = addingClasses(allCategories, cssClasses);
     const fixedCategories = changeColors(newCategories);
-    console.log(fixedCategories);
+
     return randomSlider(fixedCategories);
   }, []);
-  console.log(categoriesSlide);
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());

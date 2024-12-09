@@ -61,7 +61,7 @@ function PopularGamesPage() {
         </div>
         <div className='w-[93vw] flex items-center max-w-[1100px]'>
           <button
-            className='embla__prev hidden h-[fit-content] md:flex  '
+            className='embla__prev hidden w-[31px] flex-shrink-0 md:flex  '
             onClick={scrollPrev}
           >
             <img className='w-24' src={arrow}></img>
@@ -86,7 +86,7 @@ function PopularGamesPage() {
             </div>
           </div>
           <button
-            className='hidden embla__next h-[fit-content] md:flex '
+            className='embla__prev hidden w-[31px] flex-shrink-0 md:flex '
             onClick={scrollNext}
           >
             <img src={arrow} className='rotate-180 w-24'></img>
