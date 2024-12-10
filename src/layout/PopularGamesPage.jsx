@@ -4,9 +4,25 @@ import { useState, useEffect, useCallback } from 'react';
 import gamePhoto from '../assets/main-image.png';
 import arrow from '../assets/svg/arrow.svg';
 import fire from '../assets/svg/fire.svg';
+import { getPopularGames2023 } from '../hooks/api/apiData';
+import { popularGamesObj2023 } from '../utils/apiInformation/gamesObj';
 function PopularGamesPage() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    async function fetchGames() {
+      try {
+        const popularGamesPromise = await getPopularGames2023();
+        const processedGames = await popularGamesObj2023(popularGamesPromise);
+        setGames(processedGames);
+      } catch (error) {
+        console.error('Error fetching games bitch:', error);
+      }
+    }
+    fetchGames();
+  }, []);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -27,23 +43,7 @@ function PopularGamesPage() {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-  const games = [
-    [
-      { name: 'god of war', img: gamePhoto, url: '/' },
-      { name: 'god of war', img: gamePhoto, url: '/' },
-      { name: 'god of war', img: gamePhoto, url: '/' },
-    ],
-    [
-      { name: 'god of war', img: gamePhoto, url: '/' },
-      { name: 'god of war', img: gamePhoto, url: '/' },
-      { name: 'god of war', img: gamePhoto, url: '/' },
-    ],
-    [
-      { name: 'god of war', img: gamePhoto, url: '/' },
-      { name: 'god of war', img: gamePhoto, url: '/' },
-      { name: 'god of war', img: gamePhoto, url: '/' },
-    ],
-  ];
+
   return (
     <div className='flex flex-col mb-20 items-center'>
       <div className='mb-5 '>
@@ -76,7 +76,7 @@ function PopularGamesPage() {
                   >
                     {bundleGames.map((singleGame, indexSlide) => (
                       <PopularGames
-                        gamePhoto={singleGame.img}
+                        gamePhoto={singleGame.imgUrl}
                         key={indexSlide}
                       />
                     ))}

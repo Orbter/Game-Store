@@ -101,7 +101,7 @@ function AllCategory() {
 
         <div className='w-[93vw] flex items-center max-w-[1100px]'>
           <button
-            className='embla__prev hidden w-[90px] flex-shrink-0 md:flex   '
+            className='embla__prev hidden w-[31px] flex-shrink-0 md:flex   '
             onClick={scrollPrev}
           >
             <img className='w-[31px]' src={arrow}></img>
@@ -127,7 +127,7 @@ function AllCategory() {
             </div>
           </div>
           <button
-            className='hidden embla__next w-[85px] justify-end flex-shrink-0 md:flex '
+            className='hidden embla__next w-[31px] justify-end flex-shrink-0 md:flex '
             onClick={scrollNext}
           >
             <img src={arrow} className='rotate-180 w-[31px]'></img>

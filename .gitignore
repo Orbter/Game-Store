@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 tailwinds.config.js
-keys.env
+.env
 
 # Editor directories and files
 .vscode/*
