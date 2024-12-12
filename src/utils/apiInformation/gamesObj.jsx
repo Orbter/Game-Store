@@ -1,16 +1,19 @@
 import { calculatingPrice } from '../categoriesCaculation/calculatingPrice';
 
 function mainSliderObj(gamesArray) {
-  const informationArray = [];
-  gamesArray.result.map((game, index) => {
-    const obj = {
+  try {
+    const informationArray = gamesArray.results.map((game, index) => ({
       gameName: game.name,
       imgUrl: game.background_image,
-      screenShot: game.short_screenshots[0],
-      price: calculatingPrice(),
       genres: game.genres,
-    };
-  });
+      screenShots: game.short_screenshots[2].image,
+      price: calculatingPrice(),
+    }));
+    return informationArray;
+  } catch (error) {
+    console.error('Error processing games api:', error);
+    return [];
+  }
 }
 
 async function popularGamesObj2023(gamesArrayPromise) {

@@ -1,25 +1,32 @@
 import { data } from 'autoprefixer';
 import { useEffect, useState } from 'react';
 
-const getPopularGamesMain = () => {
+const getPopularGamesMain = async () => {
   const apiKey = import.meta.env.VITE_RAWG_API;
   const today = new Date().toISOString().split('T')[0];
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
     .toISOString()
     .split('T')[0];
 
-  fetch(
-    `https://api.rawg.io/api/games?key=${apiKey}&dates=${thirtyDaysAgo},${today}&ordering=-popularity&page_size=5`,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${apiKey}&dates=${thirtyDaysAgo},${today}&ordering=-popularity&page_size=5`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    },
-  )
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error('Error:', error));
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Api Error could not get the games:', error);
+    throw error;
+  }
 };
 
 const getPopularGames2023 = async () => {
@@ -42,7 +49,6 @@ const getPopularGames2023 = async () => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
 
     return data;
   } catch (error) {
@@ -51,43 +57,9 @@ const getPopularGames2023 = async () => {
   }
 };
 
-async function getSteamAppId(gameName) {
-  const response = await fetch(
-    'https://api.steampowered.com/ISteamApps/GetAppList/v2/',
-  );
-  const data = await response.json();
-  const apps = data.applist.apps;
+export { getPopularGamesMain, getPopularGames2023 };
 
-  // Normalize the game name for comparison
-  const normalizedGameName = gameName.trim().toLowerCase();
-
-  // Search for the game in the app list
-  const app = apps.find(
-    (app) => app.name.trim().toLowerCase() === normalizedGameName,
-  );
-
-  if (app) {
-    return app.appid;
-  } else {
-    throw new Error(`Game "${gameName}" not found in the Steam app list.`);
-  }
-}
-
-const fetchGameSteamAppId = async (gameName) => {
-  const appId = await getSteamAppId(gameName);
-  fetch(`https://store.steampowered.com/api/appdetails?appids=${appId}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((error) => console.error('Error:', error));
-};
-
-function PriceGames() {}
-
-export { getPopularGamesMain, fetchGameSteamAppId, getPopularGames2023 };
-
-//https://store.steampowered.com/api/appdetails?appids=1091500
+//  https://api.isthereanydeal.com/games/lookup/v1?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&title=Team Fortress 2
+// https://api.isthereanydeal.com/games/history/v2?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&id=018d937e-fde4-72ff-a7af-45e4955a8dd6
+//https://api.isthereanydeal.com/games/lookup/v1?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&title=Vampire: The Masquerade - Bloodlines 2
+// https://api.isthereanydeal.com/games/lookup/v1?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&title=Indiana Jones and the Great Circle

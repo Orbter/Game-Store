@@ -6,172 +6,26 @@ import { useCallback, useEffect, useState } from 'react';
 import arrow from '../assets/svg/arrow.svg';
 import { getPopularGamesMain } from '../hooks/api/apiData';
 import { mainSliderObj } from '../utils/apiInformation/gamesObj.jsx';
-
+import { calculatingPrice } from '../utils/categoriesCaculation/calculatingPrice.jsx';
 function MainContainer() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [slideData, setSlideData] = useState([]);
+
   // const slideData = giveGameInformation();
-  const slidesData = [
-    {
-      title: 'God of War Ragnarok',
-      price: '$60',
-      imageUrl: mainPhoto,
-      tags: [
-        {
-          id: 31,
-          name: 'Singleplayer',
-          slug: 'singleplayer',
-          language: 'eng',
-          games_count: 229926,
-        },
+  useEffect(() => {
+    async function fetchGames() {
+      try {
+        const mainGamesList = await getPopularGamesMain();
+        const mainGames = mainSliderObj(mainGamesList);
+        setSlideData(mainGames);
+      } catch (error) {
+        console.error('Error fetching games bitch:', error);
+      }
+    }
+    fetchGames();
+  }, []);
 
-        {
-          id: 13,
-          name: 'Atmospheric',
-          slug: 'atmospheric',
-          language: 'eng',
-          games_count: 34752,
-        },
-
-        {
-          id: 42,
-          name: 'Great Soundtrack',
-          slug: 'great-soundtrack',
-          language: 'eng',
-          games_count: 3412,
-        },
-
-        {
-          id: 118,
-          name: 'Story Rich',
-          slug: 'story-rich',
-          language: 'eng',
-          games_count: 22889,
-        },
-        {
-          id: 149,
-          name: 'Third Person',
-          slug: 'third-person',
-          language: 'eng',
-          games_count: 12259,
-        },
-
-        {
-          id: 6,
-          name: 'Exploration',
-          slug: 'exploration',
-          language: 'eng',
-          games_count: 24493,
-        },
-      ],
-    },
-    {
-      title: 'Horizon Zero Dawn',
-      price: '$40',
-      imageUrl: mainPhoto,
-      tags: [
-        {
-          id: 31,
-          name: 'Singleplayer',
-          slug: 'singleplayer',
-          language: 'eng',
-          games_count: 229926,
-        },
-
-        {
-          id: 13,
-          name: 'Atmospheric',
-          slug: 'atmospheric',
-          language: 'eng',
-          games_count: 34752,
-        },
-
-        {
-          id: 42,
-          name: 'Great Soundtrack',
-          slug: 'great-soundtrack',
-          language: 'eng',
-          games_count: 3412,
-        },
-
-        {
-          id: 118,
-          name: 'Story Rich',
-          slug: 'story-rich',
-          language: 'eng',
-          games_count: 22889,
-        },
-        {
-          id: 149,
-          name: 'Third Person',
-          slug: 'third-person',
-          language: 'eng',
-          games_count: 12259,
-        },
-
-        {
-          id: 6,
-          name: 'Exploration',
-          slug: 'exploration',
-          language: 'eng',
-          games_count: 24493,
-        },
-      ],
-    },
-    {
-      title: 'The Last of Us Part II',
-      price: '$50',
-      imageUrl: mainPhoto,
-      tags: [
-        {
-          id: 31,
-          name: 'Singleplayer',
-          slug: 'singleplayer',
-          language: 'eng',
-          games_count: 229926,
-        },
-
-        {
-          id: 13,
-          name: 'Atmospheric',
-          slug: 'atmospheric',
-          language: 'eng',
-          games_count: 34752,
-        },
-
-        {
-          id: 42,
-          name: 'Great Soundtrack',
-          slug: 'great-soundtrack',
-          language: 'eng',
-          games_count: 3412,
-        },
-
-        {
-          id: 118,
-          name: 'Story Rich',
-          slug: 'story-rich',
-          language: 'eng',
-          games_count: 22889,
-        },
-        {
-          id: 149,
-          name: 'Third Person',
-          slug: 'third-person',
-          language: 'eng',
-          games_count: 12259,
-        },
-
-        {
-          id: 6,
-          name: 'Exploration',
-          slug: 'exploration',
-          language: 'eng',
-          games_count: 24493,
-        },
-      ],
-    },
-  ];
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
@@ -203,13 +57,18 @@ function MainContainer() {
         <div className='bg-main-blue w-9/12 ml-6 mr-6  md:10/12 h-[fit-content] cursor-pointer embla '>
           <div className='embla-viewport' ref={emblaRef}>
             <div className='embla__container gap-8'>
-              {slidesData.map((slide, index) => (
+              {slideData.map((slide, index) => (
                 <div key={index} className='embla__slide md:flex '>
                   <div className='w-full md:w-[60%]'>
-                    <MainSlider image={slide.imageUrl} />
+                    <MainSlider image={slide.imgUrl} />
                   </div>
                   <div className='w-full md:w-[40%]'>
-                    <InformationSlider price={slide.price} tags={slide.tags} />
+                    <InformationSlider
+                      price={slide.price}
+                      tags={slide.genres}
+                      name={slide.gameName}
+                      screenShots={slide.screenShots}
+                    />
                   </div>
                 </div>
               ))}
@@ -225,7 +84,7 @@ function MainContainer() {
         </button>
       </div>
       <div className='flex gap-5'>
-        {slidesData.map((_, index) => (
+        {slideData.map((_, index) => (
           <button
             key={index}
             className={`w-[3.5vw]  h-[2vw] lg:w-8 lg:h-5 rounded-sm ${
