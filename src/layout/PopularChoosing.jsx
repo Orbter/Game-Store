@@ -1,5 +1,6 @@
 import { PopularCategories } from '../components/categories/PopularCategories';
 import mainPhoto from '../assets/main-image.png';
+
 function PopularChoosing() {
   const games = [
     { name: 'god of war', url: mainPhoto, price: '$100' },

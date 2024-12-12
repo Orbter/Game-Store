@@ -5,7 +5,7 @@ import mainPhoto from '../assets/main-image.png';
 import { useCallback, useEffect, useState } from 'react';
 import arrow from '../assets/svg/arrow.svg';
 import { getPopularGamesMain } from '../hooks/api/apiData';
-import { mainSliderObj } from '../utils/apiInformation/gamesObj.jsx';
+import { mainSliderObj } from '../utils/objCreators/mainGamesObj.jsx';
 import { calculatingPrice } from '../utils/categoriesCaculation/calculatingPrice.jsx';
 function MainContainer() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });

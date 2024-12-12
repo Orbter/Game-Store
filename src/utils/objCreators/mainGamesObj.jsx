@@ -40,4 +40,13 @@ async function popularGamesObj2023(gamesArrayPromise) {
   }
 }
 
-export { popularGamesObj2023, mainSliderObj };
+function bigGamesCurrentObj(gamesArray) {
+  const informationArray = gamesArray.results.map((game) => ({
+    gameName: game.name,
+    imgUrl: game.background_image,
+    platforms: game.platforms,
+  }));
+  return informationArray;
+}
+
+export { popularGamesObj2023, mainSliderObj, bigGamesCurrentObj };

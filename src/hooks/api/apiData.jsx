@@ -57,9 +57,18 @@ const getPopularGames2023 = async () => {
   }
 };
 
-export { getPopularGamesMain, getPopularGames2023 };
-
-//  https://api.isthereanydeal.com/games/lookup/v1?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&title=Team Fortress 2
-// https://api.isthereanydeal.com/games/history/v2?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&id=018d937e-fde4-72ff-a7af-45e4955a8dd6
-//https://api.isthereanydeal.com/games/lookup/v1?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&title=Vampire: The Masquerade - Bloodlines 2
-// https://api.isthereanydeal.com/games/lookup/v1?key=540f1c3002f7fadeda4e94e2d3380bffb99345a8&title=Indiana Jones and the Great Circle
+const bestOfTheYear = async () => {
+  const apiKey = import.meta.env.VITE_RAWG_API;
+  const currentYear = new Date().getFullYear();
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?key=${apiKey}&dates=${currentYear}-01-01,${currentYear}-12-31&page_size=3`,
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+export { getPopularGamesMain, getPopularGames2023, bestOfTheYear };

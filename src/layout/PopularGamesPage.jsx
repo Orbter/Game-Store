@@ -5,7 +5,7 @@ import gamePhoto from '../assets/main-image.png';
 import arrow from '../assets/svg/arrow.svg';
 import fire from '../assets/svg/fire.svg';
 import { getPopularGames2023 } from '../hooks/api/apiData';
-import { popularGamesObj2023 } from '../utils/apiInformation/gamesObj';
+import { popularGamesObj2023 } from '../utils/objCreators/mainGamesObj';
 function PopularGamesPage() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
