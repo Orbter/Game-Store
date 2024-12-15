@@ -2,7 +2,7 @@ import searchIcon from '../../assets/svg/search-icon.svg';
 import closeIcon from '../../assets/svg/close.svg';
 import { useState, useRef } from 'react';
 
-function Search() {
+function Search({ SetSearchText, searchText }) {
   const [isPressed, setIsPressed] = useState(false);
   const openSearch = () => {
     if (!isPressed) {
@@ -29,6 +29,7 @@ function Search() {
           ></img>
 
           <input
+            value={searchText}
             type='text'
             placeholder='Search Store'
             className='search pl-10 rounded-md w-10 sm:w-full bg-customGray text-white text-base flex h-9 items-center gap-5'
@@ -38,9 +39,9 @@ function Search() {
         // main container
         <div className='flex flex-col fixed z-20 top-0 left-0'>
           {/*right and left border*/}
-          <div className='z-30 header-color h-16 w-[98vw] fixed'></div>
+          <div className='z-30 header-color h-16 w-[100vw] fixed'></div>
           {/*flex displacer*/}
-          <div className='flex w-[98vw] items-center relative z-40 h-16 justify-center'>
+          <div className='flex w-[100vw] items-center relative z-40 h-16 justify-center'>
             {/*input container*/}
             <div className='flex w-[90vw] bg-customGray pl-3 pr-3 items-center'>
               <img
@@ -50,9 +51,11 @@ function Search() {
               ></img>
 
               <input
+                value={searchText}
                 type='text'
                 placeholder='Search Store'
                 className='search outline-none  pl-3 right-4 w-[85vw] h-16 bg-customGray text-white text-md sm:text-lg flex items-center gap-5'
+                onChange={(e) => SetSearchText(e.target.value)} // ... and update the state variable on any edits!
               ></input>
               <img
                 src={closeIcon}

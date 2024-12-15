@@ -2,7 +2,10 @@ import neon from '../assets/neon.png';
 import menu from '../assets/svg/menu.svg';
 import { Search } from '../components/headerComponents/search';
 import { ActionButtons } from '../components/headerComponents/ActionButtons';
+import { useState } from 'react';
 function Header() {
+  const [searchText, SetSearchText] = useState('');
+
   return (
     <div className='w-full pr-5 pl-5 header-color h-16 fixed flex items-center inset-0 z-10 justify-between'>
       <div className='flex items-center gap-5'>
@@ -15,7 +18,7 @@ function Header() {
         </div>
       </div>
       <div className='flex gap-5'>
-        <Search />
+        <Search SetSearchText={SetSearchText} searchText={searchText} />
         <ActionButtons />
       </div>
     </div>

@@ -18,8 +18,8 @@ function PopularCategories({ category, threeGames, last }) {
       <div className='flex flex-col justify-between gap-8'>
         {threeGames.map((game, index) => (
           <SmallGame
-            imgUrl={game.url}
-            gameName={game.name}
+            imgUrl={game.imgUrl}
+            gameName={game.gameName}
             price={game.price}
             key={index}
           />

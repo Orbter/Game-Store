@@ -48,5 +48,18 @@ function bigGamesCurrentObj(gamesArray) {
   }));
   return informationArray;
 }
+function smallGamesObj(gamesArray) {
+  const informationArray = gamesArray.results.map((game) => ({
+    gameName: game.name,
+    imgUrl: game.background_image,
+    price: calculatingPrice(),
+  }));
+  return informationArray;
+}
 
-export { popularGamesObj2023, mainSliderObj, bigGamesCurrentObj };
+export {
+  popularGamesObj2023,
+  mainSliderObj,
+  bigGamesCurrentObj,
+  smallGamesObj,
+};

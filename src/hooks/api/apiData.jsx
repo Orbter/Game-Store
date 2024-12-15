@@ -71,4 +71,78 @@ const bestOfTheYear = async () => {
     throw error;
   }
 };
-export { getPopularGamesMain, getPopularGames2023, bestOfTheYear };
+const fetchNextMonthGames = async () => {
+  const apiKey = import.meta.env.VITE_RAWG_API;
+  const currentDate = new Date();
+
+  const nextMonthStart = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    1,
+  );
+  const nextMonthEnd = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 2,
+    0,
+  ); // Last day of next month
+
+  const startDate = nextMonthStart.toISOString().split('T')[0];
+  const endDate = nextMonthEnd.toISOString().split('T')[0];
+
+  const url = `https://api.rawg.io/api/games?key=${apiKey}&dates=${startDate},${endDate}&page_size=3&ordering=-added`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const fetchAllTimeSellers = async () => {
+  const apiKey = import.meta.env.VITE_RAWG_API;
+  const url = `https://api.rawg.io/api/games?&page_size=3&ordering=-added&key=${apiKey}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log('error in trending: ', error);
+  }
+};
+const fetchNewAndTrending = async () => {
+  const apiKey = import.meta.env.VITE_RAWG_API;
+  const today = new Date();
+
+  // Calculate the start date (30 days ago)
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(today.getDate() - 30);
+
+  // Calculate the end date (30 days into the future)
+  const thirtyDaysFromNow = new Date();
+  thirtyDaysFromNow.setDate(today.getDate() + 30);
+
+  // Convert dates to ISO format (YYYY-MM-DD)
+  const startDate = thirtyDaysAgo.toISOString().split('T')[0];
+  const endDate = thirtyDaysFromNow.toISOString().split('T')[0];
+
+  const url = `https://api.rawg.io/api/games?dates=${startDate},${endDate}&ordering=-added&key=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log('Error fetching new and trending games:', error);
+  }
+};
+
+export {
+  getPopularGamesMain,
+  getPopularGames2023,
+  bestOfTheYear,
+  fetchNextMonthGames,
+  fetchAllTimeSellers,
+  fetchNewAndTrending,
+};
