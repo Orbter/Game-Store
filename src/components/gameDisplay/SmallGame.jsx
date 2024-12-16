@@ -14,7 +14,7 @@ function SmallGame({ imgUrl, gameName, price }) {
           {gameName}
         </h4>
         <p className='inter font-extralight text-lg sm:text-base text-white'>
-          {price}
+          {`$${price}`}
         </p>
       </div>
     </div>

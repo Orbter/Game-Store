@@ -32,11 +32,6 @@ function PopularChoosing() {
     fetchGames();
   }, []);
 
-  const games = [
-    { name: 'god of war', url: mainPhoto, price: '$100' },
-    { name: 'god of war', url: mainPhoto, price: '$100' },
-    { name: 'god of war', url: mainPhoto, price: '$100' },
-  ];
   return (
     <div className='flex flex-col sm:flex-row w-[93vw] items-center justify-center gap-7 sm:gap-0'>
       <PopularCategories

@@ -1,6 +1,3 @@
-import { data } from 'autoprefixer';
-import { useEffect, useState } from 'react';
-
 const getPopularGamesMain = async () => {
   const apiKey = import.meta.env.VITE_RAWG_API;
   const today = new Date().toISOString().split('T')[0];
