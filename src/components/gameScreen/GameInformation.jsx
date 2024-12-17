@@ -1,6 +1,8 @@
 import { GameText } from './gameTextInformation/GameText';
 import { GameAction } from './gameTextInformation/GameAction';
 function GameInformation({ game, gameObj }) {
+  console.log(game);
+
   return (
     <div className='flex flex-col'>
       <GameText game={game} />

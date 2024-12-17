@@ -1,23 +1,39 @@
 import useEmblaCarousel from 'embla-carousel-react';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-function PhotoCarousel(photos) {
+function PhotoCarousel({ photos }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on('select', onSelect);
+    onSelect();
+  }, [emblaApi]);
+
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col w-8/12 cursor-pointer'>
       <div className='embla mt-4'>
         <div className='embla-viewport' ref={emblaRef}>
-          <div className='embla__container'>
-            {photos.map((photo, index) => (
-              <img key={index} src={photo.image}></img>
+          <div className='embla__container flex'>
+            {photos.results.map((photo, index) => (
+              <div key={index} className='embla__slide flex mr-4'>
+                <img
+                  className='w-full h-full object-fill rounded'
+                  src={photo.image}
+                ></img>
+              </div>
             ))}
           </div>
         </div>
       </div>
       <div className='flex gap-5'>
-        {photos.map((_, index) => (
+        {photos.results.map((_, index) => (
           <button
             key={index}
             className={`w-[3.5vw]  h-[2vw] lg:w-8 lg:h-5 rounded-sm ${

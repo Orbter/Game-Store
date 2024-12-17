@@ -21,8 +21,8 @@ function GameAction({ game, gameObj }) {
         </div>
       </div>
       <div>
-        <buttons className='bg-[#26BBFF]'>Add To Cart</buttons>
-        <buttons className='bg-[#9BA6AA]'>Add To Favorite</buttons>
+        <button className='bg-[#26BBFF]'>Add To Cart</button>
+        <button className='bg-[#9BA6AA]'>Add To Favorite</button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ function GameText({ game }) {
       <div className='flex justify-between items-center'>
         <h3>Genre</h3>
         <p>
-          {game.genres.map((genre, index) => (
+          {game?.genres?.map((genre, index) => (
             <span key={index}>
               {genre.name} {index < game.genres.length - 1 && ', '}
             </span>
@@ -26,10 +26,10 @@ function GameText({ game }) {
       <div className='flex justify-between items-center'>
         <h3>Platform</h3>
         <p>
-          {game.parent_platforms.map((platform, index) => (
+          {game?.parent_platforms?.map((parentPlatform, index) => (
             <span key={index}>
-              {platform.name}
-              {index < game.platform.length - 1 && ', '}
+              {parentPlatform.platform.name}
+              {index < game.parent_platforms.length - 1 && ', '}
             </span>
           ))}
         </p>

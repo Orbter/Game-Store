@@ -6,13 +6,13 @@ import { useCallback, useEffect, useState } from 'react';
 import arrow from '../assets/svg/arrow.svg';
 import { getPopularGamesMain } from '../hooks/api/apiData';
 import { mainSliderObj } from '../utils/objCreators/mainGamesObj.jsx';
-import { calculatingPrice } from '../utils/categoriesCaculation/calculatingPrice.jsx';
+import { Link } from 'react-router-dom';
+
 function MainContainer() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [slideData, setSlideData] = useState([]);
 
-  // const slideData = giveGameInformation();
   useEffect(() => {
     async function fetchGames() {
       try {
@@ -59,17 +59,21 @@ function MainContainer() {
             <div className='embla__container gap-8'>
               {slideData.map((slide, index) => (
                 <div key={index} className='embla__slide md:flex '>
-                  <div className='w-full md:w-[60%]'>
-                    <MainSlider image={slide.imgUrl} />
-                  </div>
-                  <div className='w-full md:w-[40%]'>
-                    <InformationSlider
-                      price={slide.price}
-                      tags={slide.genres}
-                      name={slide.gameName}
-                      screenShots={slide.screenShots}
-                    />
-                  </div>
+                  <Link to={`/game/${slide.gameName}`}>
+                    <div className='md:flex'>
+                      <div className='w-full md:w-[60%]'>
+                        <MainSlider image={slide.imgUrl} />
+                      </div>
+                      <div className='w-full md:w-[40%]'>
+                        <InformationSlider
+                          price={slide.price}
+                          tags={slide.genres}
+                          name={slide.gameName}
+                          screenShots={slide.screenShots}
+                        />
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>
