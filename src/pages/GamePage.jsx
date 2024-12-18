@@ -23,7 +23,6 @@ function GamePage() {
       const gameScreenShots = await fetchScreenshots(gameSlug);
       const thisGameObj = gameObj(gameInformationObj);
       setGameInformation(gameInformationObj);
-      console.log(gameInformationObj);
       setGamePhotos(gameScreenShots);
       setGameObjValue(thisGameObj);
     }
@@ -32,20 +31,24 @@ function GamePage() {
   }, [gameName]);
 
   return (
-    <div className='home-screen h-fit min-h-screen text-white'>
+    <div className='home-screen h-fit min-h-screen text-white flex flex-col '>
       {!gameInformation ? (
         <div>Loading...</div>
       ) : (
         <>
-          <h1 className='inter text-6xl font-semibold'>
-            {gameInformation.name}
-          </h1>
-          <div>
-            <PhotoCarousel photos={gamePhotos} />
-            <GameInformation game={gameInformation} gameObj={gameObjValue} />
+          <div className='m-3 mb-10 mt-10'>
+            <h1 className='inter text-6xl font-semibold flex'>
+              {gameInformation.name}
+            </h1>
+            <div className='flex justify-between'>
+              <PhotoCarousel photos={gamePhotos} />
+              <GameInformation game={gameInformation} gameObj={gameObjValue} />
+            </div>
           </div>
-          <div>
-            <p>{gameInformation.description_raw}</p>
+          <div className='w-[100vw] flex justify-center'>
+            <p className='open-sans text-lg w-[90vw] '>
+              {gameInformation.description_raw}
+            </p>
           </div>
         </>
       )}

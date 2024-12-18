@@ -17,8 +17,8 @@ function PhotoCarousel({ photos }) {
   }, [emblaApi]);
 
   return (
-    <div className='flex flex-col w-8/12 cursor-pointer'>
-      <div className='embla mt-4'>
+    <div className='flex flex-col w-8/12 cursor-pointer gap-4 justify-start'>
+      <div className='embla'>
         <div className='embla-viewport' ref={emblaRef}>
           <div className='embla__container flex'>
             {photos.results.map((photo, index) => (
@@ -32,7 +32,7 @@ function PhotoCarousel({ photos }) {
           </div>
         </div>
       </div>
-      <div className='flex gap-5'>
+      <div className='flex gap-5 justify-center mb-3'>
         {photos.results.map((_, index) => (
           <button
             key={index}

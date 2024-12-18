@@ -105,7 +105,7 @@ const fetchAllTimeSellers = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log('error in trending: ', error);
+    console.error('error in trending: ', error);
   }
 };
 const fetchNewAndTrending = async () => {
@@ -131,7 +131,7 @@ const fetchNewAndTrending = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log('Error fetching new and trending games:', error);
+    console.error('Error fetching new and trending games:', error);
   }
 };
 

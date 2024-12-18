@@ -4,10 +4,9 @@ const fetchGameSlug = async (name) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data.results[0].slug);
     return data.results[0].slug;
   } catch (error) {
-    console.log('Error fetching the actual game:', error);
+    console.error('Error fetching the actual game:', error);
   }
 };
 
@@ -17,11 +16,10 @@ const fetchGame = async (slug) => {
 
   try {
     const response = await fetch(url);
-    console.log('fetching poding');
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log('Error fetching the actual game:', error);
+    console.error('Error fetching the actual game:', error);
   }
 };
 const fetchScreenshots = async (slug) => {
@@ -34,7 +32,7 @@ const fetchScreenshots = async (slug) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log('Error fetching the screenshots:', error);
+    console.error('Error fetching the screenshots:', error);
   }
 };
 

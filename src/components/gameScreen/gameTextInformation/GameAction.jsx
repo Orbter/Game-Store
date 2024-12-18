@@ -1,28 +1,38 @@
 function GameAction({ game, gameObj }) {
-  const calculateScoreBg = () => {
-    return game.metacritic >= 90
-      ? '#F2C203'
-      : game.metacritic >= 75
-      ? '#2F7CE9'
-      : '#AA062A';
-  };
-  const colorBg = calculateScoreBg();
+  const metaScore = game.metacritic === null ? 77 : game.metacritic;
+
   return (
-    <div>
+    <div className='flex flex-col gap-4'>
       <div>
-        <div>
-          <h3>MetaScore:</h3>
-          <div className={`flex items-center justify-center bg-[${colorBg}]`}>
-            <p>{game.metacritic}</p>
+        <div className='flex justify-between items-end'>
+          <h3 className='text-lg'>MetaScore:</h3>
+          <div className='flex justify-between items-end'>
+            <div
+              className={`flex items-center justify-center size-9 text-lg font-semibold poppins p-2 rounded-sm ${
+                metaScore >= 90
+                  ? ' bg-amazingScore'
+                  : metaScore >= 75
+                  ? ' bg-goodScore'
+                  : ' bg-badScore'
+              }`}
+            >
+              <p>{metaScore}</p>
+            </div>
           </div>
         </div>
-        <div>
-          <h3>{gameObj.price}</h3>
-        </div>
+        <div></div>
       </div>
-      <div>
-        <button className='bg-[#26BBFF]'>Add To Cart</button>
-        <button className='bg-[#9BA6AA]'>Add To Favorite</button>
+      <div className='flex flex-col gap-3'>
+        <div className='flex bg-semiBlue items-center hover:scale-105 transition duration-150'>
+          <h3 className='w-[20%] flex justify-center items-center inter text-lg font-medium'>{`$${gameObj.price}`}</h3>
+
+          <button className='bg-[#26BBFF] w-[80%] h-12 rounded-tr-md rounded-br-md inter text-xl font-medium '>
+            Add To Cart
+          </button>
+        </div>
+        <button className='bg-[#9BA6AA] w-[100%] h-12 rounded-md inter text-xl font-medium hover:scale-105 transition duration-150'>
+          Add To Favorite
+        </button>
       </div>
     </div>
   );

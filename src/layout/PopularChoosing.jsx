@@ -26,7 +26,7 @@ function PopularChoosing() {
         setTrendingGames(lastThreeItems);
         setTopGames(topSellersObj);
       } catch (error) {
-        console.log('error fetching the games:', error);
+        console.error('error fetching the games:', error);
       }
     }
     fetchGames();
