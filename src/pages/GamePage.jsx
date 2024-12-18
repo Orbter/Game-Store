@@ -1,5 +1,6 @@
 import { PhotoCarousel } from '../components/gameScreen/PhotoCarousel';
 import { useEffect, useState } from 'react';
+import { Header } from '../layout/header';
 import {
   fetchGame,
   fetchScreenshots,
@@ -32,11 +33,12 @@ function GamePage() {
 
   return (
     <div className='home-screen h-fit min-h-screen text-white flex flex-col '>
+      <Header />
       {!gameInformation ? (
         <div>Loading...</div>
       ) : (
         <>
-          <div className='m-3 mb-10 mt-10'>
+          <div className='m-3 mb-10 mt-24 flex flex-col gap-5'>
             <h1 className='inter text-6xl font-semibold flex'>
               {gameInformation.name}
             </h1>

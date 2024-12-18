@@ -1,5 +1,5 @@
 function GameAction({ game, gameObj }) {
-  const metaScore = game.metacritic === null ? 77 : game.metacritic;
+  const metaScore = game.metacritic === null ? 'X' : game.metacritic;
 
   return (
     <div className='flex flex-col gap-4'>
@@ -9,10 +9,12 @@ function GameAction({ game, gameObj }) {
           <div className='flex justify-between items-end'>
             <div
               className={`flex items-center justify-center size-9 text-lg font-semibold poppins p-2 rounded-sm ${
-                metaScore >= 90
+                game.metacritic >= 90
                   ? ' bg-amazingScore'
-                  : metaScore >= 75
+                  : game.metacritic >= 75
                   ? ' bg-goodScore'
+                  : game.metacritic === null
+                  ? ' bg-[#9BA6AA]'
                   : ' bg-badScore'
               }`}
             >
@@ -30,7 +32,7 @@ function GameAction({ game, gameObj }) {
             Add To Cart
           </button>
         </div>
-        <button className='bg-[#9BA6AA] w-[100%] h-12 rounded-md inter text-xl font-medium hover:scale-105 transition duration-150'>
+        <button className='bg-[#9BA6AA]  w-[100%] h-12 rounded-md inter text-xl font-medium hover:scale-105 transition duration-150'>
           Add To Favorite
         </button>
       </div>

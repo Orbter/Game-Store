@@ -6,6 +6,8 @@ import arrow from '../assets/svg/arrow.svg';
 import fire from '../assets/svg/fire.svg';
 import { getPopularGames2023 } from '../hooks/api/apiData';
 import { popularGamesObj2023 } from '../utils/objCreators/mainGamesObj';
+import { Link } from 'react-router-dom';
+
 function PopularGamesPage() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -75,10 +77,12 @@ function PopularGamesPage() {
                     className='embla__slide flex items-center justify-around'
                   >
                     {bundleGames.map((singleGame, indexSlide) => (
-                      <PopularGames
-                        gamePhoto={singleGame.imgUrl}
+                      <Link
                         key={indexSlide}
-                      />
+                        to={`/game/${singleGame.gameName}`}
+                      >
+                        <PopularGames gamePhoto={singleGame.imgUrl} />
+                      </Link>
                     ))}
                   </div>
                 ))}

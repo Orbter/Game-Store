@@ -1,5 +1,6 @@
 import arrow from '../../assets/svg/littleArrow.svg';
 import { SmallGame } from '../gameDisplay/SmallGame';
+import { Link } from 'react-router-dom';
 function PopularCategories({ category, threeGames, last }) {
   return (
     <div
@@ -15,14 +16,16 @@ function PopularCategories({ category, threeGames, last }) {
         </h2>
         <img src={arrow} className='arrow-hover'></img>
       </div>
+
       <div className='flex flex-col justify-between gap-8'>
         {threeGames.map((game, index) => (
-          <SmallGame
-            imgUrl={game.imgUrl}
-            gameName={game.gameName}
-            price={game.price}
-            key={index}
-          />
+          <Link key={index} to={`/game/${game.gameName}`}>
+            <SmallGame
+              imgUrl={game.imgUrl}
+              gameName={game.gameName}
+              price={game.price}
+            />
+          </Link>
         ))}
       </div>
     </div>

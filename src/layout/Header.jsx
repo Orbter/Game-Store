@@ -3,6 +3,7 @@ import menu from '../assets/svg/menu.svg';
 import { Search } from '../components/headerComponents/search';
 import { ActionButtons } from '../components/headerComponents/ActionButtons';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 function Header() {
   const [searchText, SetSearchText] = useState('');
 
@@ -12,10 +13,12 @@ function Header() {
         <div className='w-8 cursor-pointer'>
           <img src={menu}></img>
         </div>
-        <div className='flex items-center cursor-pointer bebas-neue-regular'>
-          <img src={neon} className='w-12'></img>
-          <h2 className='text-3xl hidden sm:flex text-white'>Orbter Games</h2>
-        </div>
+        <Link to={'/'}>
+          <div className='flex items-center cursor-pointer bebas-neue-regular'>
+            <img src={neon} className='w-12'></img>
+            <h2 className='text-3xl hidden sm:flex text-white'>Orbter Games</h2>
+          </div>
+        </Link>
       </div>
       <div className='flex gap-5'>
         <Search SetSearchText={SetSearchText} searchText={searchText} />
