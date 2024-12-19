@@ -14,7 +14,6 @@ function GamePage() {
   const { gameName } = useParams();
   const [gameInformation, setGameInformation] = useState(null);
   const [gameObjValue, setGameObjValue] = useState([]);
-
   const [gamePhotos, setGamePhotos] = useState([]);
 
   useEffect(() => {

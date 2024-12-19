@@ -134,6 +134,19 @@ const fetchNewAndTrending = async () => {
     console.error('Error fetching new and trending games:', error);
   }
 };
+const fetchCategoriesGame = async (genre) => {
+  const apiKey = import.meta.env.VITE_RAWG_API;
+  const genreLowerCase = genre.toLowerCase();
+  const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=${genreLowerCase}&page_size=12&ordering=-rating`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching new and trending games:', error);
+  }
+};
 
 export {
   getPopularGamesMain,
@@ -142,4 +155,5 @@ export {
   fetchNextMonthGames,
   fetchAllTimeSellers,
   fetchNewAndTrending,
+  fetchCategoriesGame,
 };

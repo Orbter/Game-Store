@@ -18,6 +18,7 @@ import simulationImg from '../assets/categories/simulation.png';
 import strategyImg from '../assets/categories/strategy.png';
 import arrow from '../assets/svg/arrow.svg';
 import category from '../assets/svg/category.svg';
+import { Link } from 'react-router-dom';
 
 import {
   addingClasses,
@@ -30,22 +31,22 @@ function AllCategory() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const allCategories = [
-    { id: 0, title: 'action', img: actionImg },
-    { id: 1, title: 'adventure', img: adventureImg },
-    { id: 2, title: 'arcade', img: arcadeImg },
-    { id: 3, title: 'card', img: cardImg },
-    { id: 4, title: 'casual', img: casualImg },
-    { id: 5, title: 'family', img: familyImg },
-    { id: 6, title: 'fighting', img: fightingImg },
-    { id: 7, title: 'indie', img: indieImg },
-    { id: 8, title: 'mmo', img: mmoImg },
-    { id: 9, title: 'platformer', img: platformerImg },
-    { id: 10, title: 'racing', img: racingImg },
-    { id: 11, title: 'rpg', img: rpgImg },
-    { id: 12, title: 'shooter', img: shootersImg },
-    { id: 13, title: 'simulation', img: simulationImg },
-    { id: 14, title: 'strategy', img: strategyImg },
-    { id: 15, title: 'puzzle', img: puzzleImg },
+    { id: 0, title: 'Action', img: actionImg },
+    { id: 1, title: 'Adventure', img: adventureImg },
+    { id: 2, title: 'Arcade', img: arcadeImg },
+    { id: 3, title: 'Card', img: cardImg },
+    { id: 4, title: 'Casual', img: casualImg },
+    { id: 5, title: 'Family', img: familyImg },
+    { id: 6, title: 'Fighting', img: fightingImg },
+    { id: 7, title: 'Indie', img: indieImg },
+    { id: 8, title: 'Mmo', img: mmoImg },
+    { id: 9, title: 'Platformer', img: platformerImg },
+    { id: 10, title: 'Racing', img: racingImg },
+    { id: 11, title: 'Rpg', img: rpgImg },
+    { id: 12, title: 'Shooter', img: shootersImg },
+    { id: 13, title: 'Simulation', img: simulationImg },
+    { id: 14, title: 'Strategy', img: strategyImg },
+    { id: 15, title: 'Puzzle', img: puzzleImg },
   ];
 
   const cssClasses = [
@@ -115,11 +116,15 @@ function AllCategory() {
                     className='embla__slide flex w-[60vw] justify-center gap-4'
                   >
                     {bundleCategories.map((singleCategory, indexSlide) => (
-                      <Category
+                      <Link
                         key={indexSlide}
-                        gamesCategoric={singleCategory}
-                        index={index}
-                      />
+                        to={`/categories/${singleCategory.title}`}
+                      >
+                        <Category
+                          gamesCategoric={singleCategory}
+                          index={index}
+                        />
+                      </Link>
                     ))}
                   </div>
                 ))}

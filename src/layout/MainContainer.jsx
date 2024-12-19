@@ -1,7 +1,6 @@
 import { MainSlider } from '../components/mainSlider/MainSlider';
 import { InformationSlider } from '../components/mainSlider/informationSlider';
 import useEmblaCarousel from 'embla-carousel-react';
-import mainPhoto from '../assets/main-image.png';
 import { useCallback, useEffect, useState } from 'react';
 import arrow from '../assets/svg/arrow.svg';
 import { getPopularGamesMain } from '../hooks/api/apiData';
