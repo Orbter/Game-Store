@@ -6,7 +6,7 @@ function TagsCreator({ tagsArray }) {
       {tagsArray.map((tag, index) => (
         <li
           key={index}
-          className='tags-color text-white price w-fit h-5 text-xs flex justify-center items-center w-fit p-2 rounded-sm '
+          className='tags-color text-white price w-fit h-5 text-xs flex justify-center items-center  p-2 rounded-sm '
         >
           {tag.name}
         </li>

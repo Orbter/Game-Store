@@ -2,10 +2,23 @@ import neon from '../assets/neon.png';
 import menu from '../assets/svg/menu.svg';
 import { Search } from '../components/headerComponents/search';
 import { ActionButtons } from '../components/headerComponents/ActionButtons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchSearchGames } from '../hooks/api/searchGames';
 function Header() {
   const [searchText, SetSearchText] = useState('');
+  const [gamseShow, SetGamesShow] = useState([]);
+
+  useEffect(() => {
+    async function fetchGames() {
+      try {
+        const mainGamesList = await fetchSearchGames(searchText);
+        SetGamesShow(mainGamesList);
+      } catch (error) {
+        console.error('Error fetching games bitch:', error);
+      }
+    }
+  }, [searchText]);
 
   return (
     <div className='w-full pr-5 pl-5 header-color h-16 fixed flex items-center inset-0 z-10 justify-between'>
@@ -21,7 +34,11 @@ function Header() {
         </Link>
       </div>
       <div className='flex gap-5'>
-        <Search SetSearchText={SetSearchText} searchText={searchText} />
+        <Search
+          SetSearchText={SetSearchText}
+          searchText={searchText}
+          gamseShow={gamseShow}
+        />
         <ActionButtons />
       </div>
     </div>

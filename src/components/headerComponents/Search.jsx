@@ -2,7 +2,7 @@ import searchIcon from '../../assets/svg/search-icon.svg';
 import closeIcon from '../../assets/svg/close.svg';
 import { useState, useRef } from 'react';
 
-function Search({ SetSearchText, searchText }) {
+function Search({ SetSearchText, searchText, gamseShow }) {
   const [isPressed, setIsPressed] = useState(false);
   const openSearch = () => {
     if (!isPressed) {

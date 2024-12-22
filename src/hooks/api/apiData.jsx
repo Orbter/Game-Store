@@ -143,7 +143,7 @@ const fetchCategoriesGame = async (genre) => {
       : genreLowerCase === 'mmo'
       ? 'massively-multiplayer'
       : genreLowerCase;
-  const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=${slugGenre}&page_size=12&ordering=-rating`;
+  const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=${slugGenre}&page_size=12&ordering=-rating&metacritic=65,100`;
 
   try {
     const response = await fetch(url);

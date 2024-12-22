@@ -6,7 +6,6 @@ import arrow from '../assets/svg/arrow.svg';
 import { getPopularGamesMain } from '../hooks/api/apiData';
 import { mainSliderObj } from '../utils/objCreators/mainGamesObj.jsx';
 import { Link } from 'react-router-dom';
-
 function MainContainer() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -53,13 +52,13 @@ function MainContainer() {
         >
           <img className='w-[31px] h-[43px]' src={arrow}></img>
         </button>
-        <div className='bg-main-blue w-9/12 ml-6 mr-6  md:10/12 h-[fit-content] cursor-pointer embla '>
+        <div className='bg-main-blue w-[80vw] ml-6 mr-6  md:w-9/12 h-[fit-content] cursor-pointer embla '>
           <div className='embla-viewport' ref={emblaRef}>
             <div className='embla__container gap-8'>
               {slideData.map((slide, index) => (
                 <div key={index} className='embla__slide md:flex '>
                   <Link to={`/game/${slide.gameName}`}>
-                    <div className='md:flex'>
+                    <div className='md:flex h-full'>
                       <div className='w-full md:w-[60%]'>
                         <MainSlider image={slide.imgUrl} />
                       </div>

@@ -87,7 +87,7 @@ function AllCategory() {
   return (
     <div className='flex flex-col items-center mb-12'>
       <div className='mb-10 max-w-[1100px]'>
-        <div className='flex items-center cursor-pointer w-fit  sm:ml-[5vw] xl:ml-16 firstDiv'>
+        <div className='flex items-center w-fit  sm:ml-[5vw] xl:ml-16 firstDiv'>
           <div className='relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center rounded-full blurRound'>
             <img
               src={category}
