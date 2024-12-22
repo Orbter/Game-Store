@@ -32,11 +32,11 @@ function GameText({ game }) {
 
       <div className='flex justify-between items-center'>
         <h3>Platform</h3>
-        <p className='text-sm'>
+        <p className='text-sm flex justify-end flex-wrap gap-1'>
           {game?.parent_platforms?.map((parentPlatform, index) => (
             <span key={index}>
               {parentPlatform.platform.name}
-              {index < game.parent_platforms.length - 1 && ', '}
+              {index < game.parent_platforms.length - 1 && ','}
             </span>
           ))}
         </p>

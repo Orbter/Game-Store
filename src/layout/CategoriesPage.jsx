@@ -29,7 +29,7 @@ import { Category } from '../components/categories/Category.jsx';
 function AllCategory() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
-
+  // MMO RPG
   const allCategories = [
     { id: 0, title: 'Action', img: actionImg },
     { id: 1, title: 'Adventure', img: adventureImg },

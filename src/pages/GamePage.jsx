@@ -9,6 +9,7 @@ import {
 import { GameInformation } from '../components/gameScreen/gameInformation';
 import { useParams } from 'react-router-dom';
 import { gameObj } from '../utils/objCreators/gameObj';
+import { LoadScreen } from '../layout/LoadScreen';
 
 function GamePage() {
   const { gameName } = useParams();
@@ -34,14 +35,14 @@ function GamePage() {
     <div className='home-screen h-fit min-h-screen text-white flex flex-col '>
       <Header />
       {!gameInformation ? (
-        <div>Loading...</div>
+        <LoadScreen />
       ) : (
         <>
           <div className='m-3 mb-10 mt-24 flex flex-col gap-5'>
             <h1 className='inter text-6xl font-semibold flex'>
               {gameInformation.name}
             </h1>
-            <div className='flex justify-between'>
+            <div className='flex justify-between h-[50vh] object-fill'>
               <PhotoCarousel photos={gamePhotos} />
               <GameInformation game={gameInformation} gameObj={gameObjValue} />
             </div>

@@ -17,10 +17,10 @@ function PhotoCarousel({ photos }) {
   }, [emblaApi]);
 
   return (
-    <div className='flex flex-col w-8/12 cursor-pointer gap-4 justify-start'>
-      <div className='embla'>
-        <div className='embla-viewport' ref={emblaRef}>
-          <div className='embla__container flex'>
+    <div className='flex flex-col w-8/12 h-full cursor-pointer gap-4 justify-start'>
+      <div className='embla h-[75%]'>
+        <div className='embla-viewport h-full' ref={emblaRef}>
+          <div className='embla__container flex h-full'>
             {photos.results.map((photo, index) => (
               <div key={index} className='embla__slide flex mr-4'>
                 <img

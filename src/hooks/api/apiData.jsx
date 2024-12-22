@@ -137,7 +137,13 @@ const fetchNewAndTrending = async () => {
 const fetchCategoriesGame = async (genre) => {
   const apiKey = import.meta.env.VITE_RAWG_API;
   const genreLowerCase = genre.toLowerCase();
-  const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=${genreLowerCase}&page_size=12&ordering=-rating`;
+  const slugGenre =
+    genreLowerCase === 'rpg'
+      ? 'role-playing-games-rpg'
+      : genreLowerCase === 'mmo'
+      ? 'massively-multiplayer'
+      : genreLowerCase;
+  const url = `https://api.rawg.io/api/games?key=${apiKey}&genres=${slugGenre}&page_size=12&ordering=-rating`;
 
   try {
     const response = await fetch(url);
