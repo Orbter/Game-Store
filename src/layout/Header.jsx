@@ -4,20 +4,21 @@ import { Search } from '../components/headerComponents/search';
 import { ActionButtons } from '../components/headerComponents/ActionButtons';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchSearchGames } from '../hooks/api/searchGames';
+import { fetchSearchGame } from '../hooks/api/searchGames';
 function Header() {
   const [searchText, SetSearchText] = useState('');
-  const [gamseShow, SetGamesShow] = useState([]);
+  const [gamesShow, SetGamesShow] = useState(null);
 
   useEffect(() => {
     async function fetchGames() {
       try {
-        const mainGamesList = await fetchSearchGames(searchText);
-        SetGamesShow(mainGamesList);
+        const mainGamesList = await fetchSearchGame(searchText);
+        SetGamesShow(mainGamesList.results);
       } catch (error) {
         console.error('Error fetching games bitch:', error);
       }
     }
+    fetchGames();
   }, [searchText]);
 
   return (
@@ -37,7 +38,7 @@ function Header() {
         <Search
           SetSearchText={SetSearchText}
           searchText={searchText}
-          gamseShow={gamseShow}
+          gamesShow={gamesShow}
         />
         <ActionButtons />
       </div>

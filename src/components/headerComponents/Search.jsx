@@ -1,8 +1,10 @@
 import searchIcon from '../../assets/svg/search-icon.svg';
 import closeIcon from '../../assets/svg/close.svg';
 import { useState, useRef } from 'react';
+import { MiniSearch } from './MiniSearch.jsx';
+import { Link } from 'react-router-dom';
 
-function Search({ SetSearchText, searchText, gamseShow }) {
+function Search({ SetSearchText, searchText, gamesShow }) {
   const [isPressed, setIsPressed] = useState(false);
   const openSearch = () => {
     if (!isPressed) {
@@ -55,7 +57,7 @@ function Search({ SetSearchText, searchText, gamseShow }) {
                 type='text'
                 placeholder='Search Store'
                 className='search outline-none  pl-3 right-4 w-[85vw] h-16 bg-customGray text-white text-md sm:text-lg flex items-center gap-5'
-                onChange={(e) => SetSearchText(e.target.value)} // ... and update the state variable on any edits!
+                onChange={(e) => SetSearchText(e.target.value)}
               ></input>
               <img
                 src={closeIcon}
@@ -64,6 +66,24 @@ function Search({ SetSearchText, searchText, gamseShow }) {
               ></img>
             </div>
           </div>
+          {searchText !== '' && (
+            <div className='bg-semiBlue h-fit min:h-[20vh] flex flex-col items-center pb-5 pt-5 gap-5'>
+              {gamesShow &&
+                gamesShow.map((game, index) => (
+                  <Link
+                    key={index}
+                    onClick={() => closeSearch()}
+                    to={`/game/${game.name}`}
+                  >
+                    <MiniSearch
+                      gameImg={game.background_image}
+                      gameName={game.name}
+                    />
+                  </Link>
+                ))}
+            </div>
+          )}
+
           {/*overlay*/}
           <div
             className='h-[100vh] bg-[#12121299] bg-opacity-60 cursor-pointer'

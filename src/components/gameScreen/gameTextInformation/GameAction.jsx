@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+import { CartContext } from '../../../CartProvider';
 function GameAction({ game, gameObj }) {
   const metaScore = game.metacritic === null ? 'X' : game.metacritic;
-
+  const cartObjList = useContext(CartContext);
+  const { cartList, setCartList } = cartObjList;
+  function addToCart() {
+    setCartList([...cartList, game]);
+  }
   return (
     <div className='flex flex-col gap-4'>
       <div>
@@ -25,14 +31,17 @@ function GameAction({ game, gameObj }) {
         <div></div>
       </div>
       <div className='flex flex-col gap-3'>
-        <div className='flex bg-semiBlue items-center hover:scale-105 transition duration-150'>
+        <div className='flex bg-semiBlue items-center hover:scale-95 md:hover:scale-105 transition duration-150'>
           <h3 className='w-[20%] flex justify-center items-center inter text-lg font-medium'>{`$${gameObj.price}`}</h3>
 
-          <button className='bg-[#26BBFF] w-[80%] h-12 rounded-tr-md rounded-br-md inter text-xl font-medium '>
+          <button
+            onClick={() => addToCart()}
+            className='bg-[#26BBFF] w-[80%] h-12 rounded-tr-md rounded-br-md inter text-xl font-medium '
+          >
             Add To Cart
           </button>
         </div>
-        <button className='bg-[#9BA6AA]  w-[100%] h-12 rounded-md inter text-xl font-medium hover:scale-105 transition duration-150'>
+        <button className='bg-[#9BA6AA]  w-[100%] h-12 rounded-md inter text-xl font-medium hover:scale-95 md:hover:scale-105 transition duration-150'>
           Add To Favorite
         </button>
       </div>

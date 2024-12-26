@@ -18,7 +18,9 @@ export default {
       },
       backgroundColor: {
         semiBlue: '#233342',
+        semiBlueWhite: '#2b3e50',
         semiBlack: '#131A22',
+        grayText: '#858E8E',
         badScore: '#AA062A',
         goodScore: '#2F7CE9',
         amazingScore: '#F2C203',
