@@ -5,7 +5,11 @@ function GameAction({ game, gameObj }) {
   const cartObjList = useContext(CartContext);
   const { cartList, setCartList } = cartObjList;
   function addToCart() {
-    setCartList([...cartList, game]);
+    const newObj = {
+      ...game,
+      price: gameObj.price,
+    };
+    setCartList([...cartList, newObj]);
   }
   return (
     <div className='flex flex-col gap-4'>

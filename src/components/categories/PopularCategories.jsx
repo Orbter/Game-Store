@@ -10,7 +10,7 @@ function PopularCategories({ category, threeGames, last }) {
           : 'flex flex-col p-1 w-[80vw] sm:w-[31vw] border-b sm:border-r sm:border-b-0 pb-6 border-gray-400 border-opacity-65 sm:max-w-[358px]'
       }
     >
-      <div className='flex justify-around sm:w-[25vw] mb-10 sm:mb-6 sm:max-w-[358px] hover-move cursor-pointer'>
+      <div className='flex justify-around sm:w-[25vw] mb-10 sm:mb-6 sm:max-w-[358px] hover-move cursor-default '>
         <h2 className='inter text-white text-3xl text-wrap text-center'>
           {category}
         </h2>
