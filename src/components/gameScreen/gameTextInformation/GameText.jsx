@@ -1,4 +1,7 @@
 function GameText({ game }) {
+  let developer = 'indie';
+
+  if (game.developers[0] !== undefined) developer = game.developers[0].name;
   return (
     <div className=' flex flex-col '>
       <div className='flex justify-between items-center'>
@@ -14,7 +17,7 @@ function GameText({ game }) {
       <div className='w-full h-[1px] bg-gray-600 mb-1'></div>
       <div className='flex justify-between items-center'>
         <h3>Developer</h3>
-        <p className='text-sm'>{game.developers[0].name}</p>
+        <p className='text-sm'>{developer}</p>
       </div>
       <div className='w-full h-[1px] bg-gray-600 mb-1'></div>
 

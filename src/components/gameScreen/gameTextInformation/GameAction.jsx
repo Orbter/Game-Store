@@ -1,16 +1,32 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../../CartProvider';
 function GameAction({ game, gameObj }) {
   const metaScore = game.metacritic === null ? 'X' : game.metacritic;
   const cartObjList = useContext(CartContext);
   const { cartList, setCartList } = cartObjList;
-  function addToCart() {
-    const newObj = {
-      ...game,
-      price: gameObj.price,
+  const [price, setPrice] = useState(gameObj.price);
+  const [onCart, setOnCart] = useState(false);
+
+  useEffect(() => {
+    const gameOnCart = () => {
+      return cartList.find((cartGame) => cartGame.name === game.name);
     };
-    setCartList([...cartList, newObj]);
+    const isOnCart = gameOnCart();
+    if (isOnCart !== undefined) {
+      setPrice(isOnCart.price);
+      setOnCart(true);
+    } else setOnCart(false);
+  }, [gameObj.price]);
+  function addToCart() {
+    if (!onCart) {
+      const newObj = {
+        ...game,
+        price: price,
+      };
+      setCartList([...cartList, newObj]);
+    }
   }
+
   return (
     <div className='flex flex-col gap-4'>
       <div>
@@ -36,7 +52,7 @@ function GameAction({ game, gameObj }) {
       </div>
       <div className='flex flex-col gap-3'>
         <div className='flex bg-semiBlue items-center hover:scale-95 md:hover:scale-105 transition duration-150'>
-          <h3 className='w-[20%] flex justify-center items-center inter text-lg font-medium'>{`$${gameObj.price}`}</h3>
+          <h3 className='w-[20%] flex justify-center items-center inter text-lg font-medium'>{`$${price}`}</h3>
 
           <button
             onClick={() => addToCart()}
@@ -45,9 +61,6 @@ function GameAction({ game, gameObj }) {
             Add To Cart
           </button>
         </div>
-        <button className='bg-[#9BA6AA]  w-[100%] h-12 rounded-md inter text-xl font-medium hover:scale-95 md:hover:scale-105 transition duration-150'>
-          Add To Favorite
-        </button>
       </div>
     </div>
   );

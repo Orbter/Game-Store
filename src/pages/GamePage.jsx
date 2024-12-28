@@ -1,6 +1,7 @@
 import { PhotoCarousel } from '../components/gameScreen/PhotoCarousel';
 import { useEffect, useState } from 'react';
 import { Header } from '../layout/header';
+import { CartContext } from '../CartProvider';
 import {
   fetchGame,
   fetchScreenshots,
@@ -10,6 +11,7 @@ import { GameInformation } from '../components/gameScreen/gameInformation';
 import { useParams } from 'react-router-dom';
 import { gameObj } from '../utils/objCreators/gameObj';
 import { LoadScreen } from '../layout/LoadScreen';
+import { CartGame } from '../components/cart/CartGame';
 function GamePage() {
   const { gameName } = useParams();
   const [gameInformation, setGameInformation] = useState(null);

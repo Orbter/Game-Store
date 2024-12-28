@@ -23,7 +23,8 @@ function CartPage() {
   useEffect(() => {
     calculatePrice();
     calculateSubTotal();
-  }, [cartList]);
+  }, [cartList, priceGames]);
+
   return (
     <div className='home-screen h-fit min-h-screen text-white flex flex-col p-7 pt-[100px]'>
       <Header />

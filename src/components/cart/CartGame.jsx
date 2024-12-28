@@ -24,7 +24,7 @@ function CartGame({ game }) {
         </p>
         <div className='flex text-gray-500 gap-5 font-bold text-sm lg:text-end'>
           <p className='cursor-pointer hover:text-gray-400'>Remove</p>
-          <p className='cursor-pointer hover:text-gray-400'>Add too liked</p>
+          <p className='cursor-pointer hover:text-gray-400'>Add</p>
         </div>
       </div>
     </div>
