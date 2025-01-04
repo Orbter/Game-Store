@@ -1,4 +1,4 @@
-function CartGame({ game }) {
+function CartGame({ game, removeFromList, addCopyToTheList, index }) {
   return (
     <div className='bg-semiBlue rounded p-5 max-w-[530px] font-bold inter flex flex-col gap-2 lg:p-4 lg:w-[60vw] lg:h-36 lg:max-w-[950px] lg:flex-row cursor-pointer xl:h-44 '>
       <div className='flex flex-col gap-2 lg:flex-row lg:w-[80%]  lg:gap-10 '>
@@ -23,8 +23,18 @@ function CartGame({ game }) {
           {`$${game.price}`}
         </p>
         <div className='flex text-gray-500 gap-5 font-bold text-sm lg:text-end'>
-          <p className='cursor-pointer hover:text-gray-400'>Remove</p>
-          <p className='cursor-pointer hover:text-gray-400'>Add</p>
+          <p
+            className='cursor-pointer hover:text-gray-400'
+            onClick={() => removeFromList(index)}
+          >
+            Remove
+          </p>
+          <p
+            className='cursor-pointer hover:text-gray-400'
+            onClick={() => addCopyToTheList(game)}
+          >
+            Add
+          </p>
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../../CartProvider';
+import { Link } from 'react-router-dom';
 function GameAction({ game, gameObj }) {
   const metaScore = game.metacritic === null ? 'X' : game.metacritic;
   const cartObjList = useContext(CartContext);
@@ -23,6 +24,7 @@ function GameAction({ game, gameObj }) {
         ...game,
         price: price,
       };
+      setOnCart(true);
       setCartList([...cartList, newObj]);
     }
   }
@@ -53,13 +55,20 @@ function GameAction({ game, gameObj }) {
       <div className='flex flex-col gap-3'>
         <div className='flex bg-semiBlue items-center hover:scale-95 md:hover:scale-105 transition duration-150'>
           <h3 className='w-[20%] flex justify-center items-center inter text-lg font-medium'>{`$${price}`}</h3>
-
-          <button
-            onClick={() => addToCart()}
-            className='bg-[#26BBFF] w-[80%] h-12 rounded-tr-md rounded-br-md inter text-xl font-medium '
-          >
-            Add To Cart
-          </button>
+          {!onCart ? (
+            <button
+              onClick={() => addToCart()}
+              className='bg-[#26BBFF] w-[80%] h-12 rounded-tr-md rounded-br-md inter text-xl font-medium'
+            >
+              Add To Cart
+            </button>
+          ) : (
+            <Link to='/cart' className='w-[80%] h-12'>
+              <button className='bg-green-500 w-[100%] h-12 rounded-tr-md rounded-br-md inter text-xl font-medium'>
+                In Cart
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

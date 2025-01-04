@@ -7,6 +7,19 @@ function CartPage() {
   const [subTotal, setSubTotal] = useState(0);
   const cartObjList = useContext(CartContext);
   const { cartList, setCartList } = cartObjList;
+
+  const removeFromList = (index) => {
+    const copyCartList = [...cartList];
+    copyCartList.splice(index, 1);
+    setCartList(copyCartList);
+  };
+
+  const addCopyToTheList = (gameNeedToAdd) => {
+    const copyCartList = [...cartList];
+    copyCartList.unshift(gameNeedToAdd);
+    setCartList(copyCartList);
+  };
+
   const calculatePrice = () => {
     let totalPrice = 0;
     for (let index = 0; index < cartList.length; index++) {
@@ -18,7 +31,8 @@ function CartPage() {
   };
   const calculateSubTotal = () => {
     const price = priceGames * 1.2;
-    setSubTotal(price);
+    const roundedString = parseFloat(price.toFixed(1));
+    setSubTotal(roundedString);
   };
   useEffect(() => {
     calculatePrice();
@@ -35,7 +49,13 @@ function CartPage() {
             {cartList !== undefined &&
               cartList.length !== 0 &&
               cartList.map((gameCart, index) => (
-                <CartGame game={gameCart} key={index} />
+                <CartGame
+                  game={gameCart}
+                  removeFromList={removeFromList}
+                  addCopyToTheList={addCopyToTheList}
+                  index={index}
+                  key={index}
+                />
               ))}
           </div>
 

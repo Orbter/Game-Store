@@ -11,7 +11,6 @@ import { GameInformation } from '../components/gameScreen/gameInformation';
 import { useParams } from 'react-router-dom';
 import { gameObj } from '../utils/objCreators/gameObj';
 import { LoadScreen } from '../layout/LoadScreen';
-import { CartGame } from '../components/cart/CartGame';
 function GamePage() {
   const { gameName } = useParams();
   const [gameInformation, setGameInformation] = useState(null);
