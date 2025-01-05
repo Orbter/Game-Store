@@ -6,7 +6,7 @@ import CartPage from './pages/CartPage';
 import { element } from 'prop-types';
 const routes = [
   {
-    path: '/',
+    path: '/Game-Store',
     element: <MainPage />,
     errorElement: <ErrorPage />,
   },

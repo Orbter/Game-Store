@@ -98,8 +98,8 @@ const fetchNextMonthGames = async () => {
 };
 
 const fetchAllTimeSellers = async () => {
-  const apiKey = import.meta.env.VITE_RAWG_API;
-  const url = `https://api.rawg.io/api/games?&page_size=3&ordering=-added&key=${apiKey}`;
+  //const apiKey = import.meta.env.VITE_RAWG_API;
+  const url = `https://api.rawg.io/api/games?&page_size=3&ordering=-added&key=89d5ccd9a80845d9a33e3d1041a4c76b`;
   try {
     const response = await fetch(url);
     const data = await response.json();
