@@ -9,7 +9,7 @@ function CartGame({ game, removeFromList, addCopyToTheList, index }) {
           ></img>
         </div>
         <div className='flex flex-col lg:justify-center  lg:w-[50%] lg:flex-wrap'>
-          <h2 className='text-xl text-nowrap lg:text-wrap sm:text-2xl'>
+          <h2 className='text-xl text-wrap lg:text-wrap sm:text-2xl'>
             {game.name}
           </h2>
           <div>
